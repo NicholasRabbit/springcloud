@@ -12,17 +12,17 @@ https://spring.io/projects/spring-cloud 查看官网建议
 
 (3)教程建议版本配置（2020年）
 
-![1653120354628](note_images/1653120354628.png)
+![1653120354628](note-images/1653120354628.png)
 
 (3)SpringCloud各组件选型
 
 最新技术选择：
 
-![1653121452251](note_images/1653121452251.png)
+![1653121452251](note-images/1653121452251.png)
 
 旧版，仅需了解
 
-![1653121549887](note_images/1653121549887.png)
+![1653121549887](note-images/1653121549887.png)
 
 (4)Marin Flower原文
 
