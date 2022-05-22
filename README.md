@@ -1,1 +1,1 @@
-# Learning SpringCloud
+# Learning Spring Cloud
