@@ -30,8 +30,20 @@ https://www.martinfowler.com/microservices/
 
 ```txt
 Microservices Guide
-
 In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies.
 -- James Lewis and Martin Fowler (2014)
 ```
 
+### 2 ，SpringCloud项目构建步骤
+
+使用Maven构建微服务模块，构建步骤和构建Maven的SpringBoot项目一样
+
+(1)建个父工程：写好pom.xml，包括<dependency-management>等
+
+(2)建模块：右击父工程，新建Maven的Module
+
+(3)写yaml配置文件：规定端口号，项目名称，数据库等信息
+
+(4)写主启动类；
+
+(5)编写业务类的代码。
