@@ -47,3 +47,7 @@ In short, the microservice architectural style is an approach to developing a si
 (4)写主启动类；
 
 (5)编写业务类的代码。
+
+### 3，使用D开启idea热部署evTools
+
+开发阶段开启热部署，即改动代码不需重启idea，但正式环境不要开启，否则容易出错。
