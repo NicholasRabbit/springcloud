@@ -36,6 +36,8 @@ In short, the microservice architectural style is an approach to developing a si
 
 ### 2 ，SpringCloud项目构建步骤
 
+约定 > 配置 > 编码
+
 使用Maven构建微服务模块，构建步骤和构建Maven的SpringBoot项目一样
 
 (1)建个父工程：写好pom.xml，包括<dependency-management>等
