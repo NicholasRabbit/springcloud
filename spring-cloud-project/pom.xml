@@ -12,6 +12,7 @@
         <module>ann-payment-8081</module>
         <module>ben-consumer-80</module>
         <module>carol-commons-api</module>
+        <module>daniel-eureka-7001</module>
     </modules>
     <!--父工程不打包，因此打包类型为pom-->
     <packaging>pom</packaging>

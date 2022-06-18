@@ -64,6 +64,8 @@ In short, the microservice architectural style is an approach to developing a si
 
 ### 5，什么是服务注册与发现
 
+Eureka可以有多个，即集群，service provider也可以有多个，根据下面的图理解
+
 ![1655469390514](note-images/1655469390514.png)
 
 ### 6，新建模块步骤
