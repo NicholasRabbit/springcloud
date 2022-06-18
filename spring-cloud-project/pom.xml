@@ -9,7 +9,9 @@
     <artifactId>spring-cloud-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>ann-payment</module>
+        <module>ann-payment-8081</module>
+        <module>ben-consumer-80</module>
+        <module>carol-commons-api</module>
     </modules>
     <!--父工程不打包，因此打包类型为pom-->
     <packaging>pom</packaging>
@@ -89,6 +91,7 @@
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
             </dependency>
+
         </dependencies>
 
     </dependencyManagement>

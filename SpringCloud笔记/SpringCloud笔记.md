@@ -53,3 +53,29 @@ In short, the microservice architectural style is an approach to developing a si
 ### 3，使用D开启idea热部署evTools
 
 开发阶段开启热部署，即改动代码不需重启idea，但正式环境不要开启，否则容易出错。
+
+### 4，工程重构
+
+(1)即把各模块重复的代码，提取到一个公用的模块里面，供各模块用，常把实体类，工具类等放到这里
+
+一般都放到commons模块里
+
+(2)然后把commons模块执行 install，安装到本地仓库里，供其它模块调用
+
+### 5，什么是服务注册与发现
+
+![1655469390514](note-images/1655469390514.png)
+
+### 6，新建模块步骤
+
+约定 > 配置 > 编码
+
+1，建Module;
+
+2，改pom.xml;
+
+3，写yaml;
+
+4，主启动类；
+
+5，编写业务代码。
