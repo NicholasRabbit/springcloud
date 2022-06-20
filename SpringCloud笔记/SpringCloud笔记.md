@@ -81,3 +81,30 @@ Eureka可以有多个，即集群，service provider也可以有多个，根据�
 4，主启动类；
 
 5，编写业务代码。
+
+### 7，Eureka集群工作原理
+
+互相注册，相互守望
+
+![1655721491044](note-images/1655721491044.png)
+
+因为Eureka模块的application.yml里：hostname: localhost，所以再多加一个Eureka服务注册模块的话，需要在hosts文件中配置映射，使localhost能映射多个eureka模块。
+
+```yaml
+#配置Eureka
+eureka:
+  instance:
+    #hostname: localhost
+    hostname: eureka7001.com
+```
+
+这样配置实际是让localhost当一个转发器，当访问eureka7001.com:7001端口的时候，访问的是localhost:7001端口，7002同理。
+
+```txt
+127.0.0.1  eureka7001.com
+127.0.0.1  eureka7002.com
+```
+
+### 8，微服务注册后的访问问题
+
+微服务模块注册后，例如支付模块注册到Eureka服务注册中心，别的模块调用实际还是直接获取该支付模块的接口并调用，并不是调用Eureka中心，再让Eureka中心调支付模块。别的模块只是从Eureka获取了访问地址

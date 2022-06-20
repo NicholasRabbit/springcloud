@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: ann-payment  #模块名称，将来注册到微服务用这个名字
+    name: ann-payment   #模块名称，将来注册到微服务用这个名字
   #配置数据源，注意dataSource的缩进问题，不要缩进太多，仅次于spring即可
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource       # 当前数据源操作类型
@@ -27,7 +27,9 @@ logging:
 #设置本模块为Eureka服务
 eureka:
     client:
-      register-with-eureka: true  #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+      #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+      #如果取消注册就改为false
+      register-with-eureka: true
       fetchRegistry: true  #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
       service-url:
         defaultZone: http://localhost:7001/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功

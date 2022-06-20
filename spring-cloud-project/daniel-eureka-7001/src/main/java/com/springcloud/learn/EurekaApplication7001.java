@@ -12,6 +12,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * 1，在服务模块引入eureka-client依赖，具体见其它模块代码
  * 2，在服务模块的yaml配置文件追加Eureka相关配置
  * 3，在服务模块主启动类加@EnableEurekaClient注解
+ * 三，启动时，先启动Eureka服务注册中心模块，再启动提供服务的模块，最后是服务调用的模块
  * */
 
 
