@@ -5,15 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>spring-cloud-project-cluster</artifactId>
         <groupId>com.springcloud.learn</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <!--因为继承了父模块，子模块这里坐标就不用写groupId和version了，只写artivactId就行了-->
     <artifactId>ann-payment-8081</artifactId>
 
-    <!--子模块引入依赖-->
     <dependencies>
         <!--这两个模块是核心模块，每个项目必须要引入：spring-boot-starter-web和spring-boot-starter-actuator-->
         <dependency>
@@ -26,14 +24,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
-        <!--引入Eureka服务端依赖-->
+        <!--============================-->
+        <!--Eureka服务端依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
-
+        <!--MyBatis依赖-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -47,7 +44,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-           <!-- <version>5.1.30</version> --> <!--虽然父模块已定义版本，子模块也可自己定义依赖版本，会覆盖父模块的版本号5.1.37-->
+            <!-- <version>5.1.30</version> --> <!--虽然父模块已定义版本，子模块也可自己定义依赖版本，会覆盖父模块的版本号5.1.37-->
         </dependency>
         <!--jdbc-->
         <dependency>
@@ -66,11 +63,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!--引入公用模块-->
+        <!--引入公共模块依赖-->
         <dependency>
             <groupId>com.springcloud.learn</groupId>
             <artifactId>carol-commons-api</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
 

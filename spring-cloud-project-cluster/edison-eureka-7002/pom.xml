@@ -3,57 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <artifactId>spring-cloud-project</artifactId>
+        <artifactId>spring-cloud-project-cluster</artifactId>
         <groupId>com.springcloud.learn</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <!--因为继承了父模块，子模块这里坐标就不用写groupId和version了，只写artivactId就行了-->
-    <artifactId>ann-payment-8081</artifactId>
+    <artifactId>edison-eureka-7002</artifactId>
 
-    <!--子模块引入依赖-->
+
     <dependencies>
+        <!--引入Eureka，这里引入的是Eureka的server，不引入eureka-client，让其他模块当client的角色-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
         <!--这两个模块是核心模块，每个项目必须要引入：spring-boot-starter-web和spring-boot-starter-actuator-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--actuator依赖是用来检测系统健康状况，当前Beans，系统的缓存等，
-        参考：https://docs.spring.io/spring-boot/docs/2.6.1/reference/htmlsingle/#actuator.endpoints.exposing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--=============================-->
 
-        <!--引入Eureka服务端依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.10</version>
-        </dependency>
-        <!--mysql-connector-java-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-           <!-- <version>5.1.30</version> --> <!--虽然父模块已定义版本，子模块也可自己定义依赖版本，会覆盖父模块的版本号5.1.37-->
-        </dependency>
-        <!--jdbc-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -73,8 +49,6 @@
             <version>${project.version}</version>
         </dependency>
 
-
     </dependencies>
-
 
 </project>
