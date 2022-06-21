@@ -36,11 +36,12 @@
     2,子模块不用写groupId和version了。
     -->
     <dependencyManagement>
-        <!--一，追忆SpringBoot和SpringCloud版本要适配，注意查官方要求-->
+        <!--(一)，注意SpringBoot和SpringCloud版本要适配，注意查官方要求-->
         <dependencies>
+            <!--引入springboot 依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-test</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>2.2.2.RELEASE</version>
                 <type>pom</type>  <!--type为pom指父模块并不引入依赖，而是只规定版本号-->
                 <scope>import</scope>  <!--import : 用于多继承，既继承多个parent依赖-->
