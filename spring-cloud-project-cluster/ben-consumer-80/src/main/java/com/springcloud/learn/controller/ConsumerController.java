@@ -12,7 +12,8 @@ import javax.annotation.Resource;
 @RequestMapping(value="/consumer")
 public class ConsumerController {
 
-    public static final String PAYMENT_URL = "http://localhost:8081";    //这里暂时先写死模块的调用地址，后期写道配置文件里
+    //public static final String PAYMENT_URL = "http://localhost:8081";    //单服务模块访问地址写法
+    public static final String PAYMENT_URL = "http://ANN-PAYMENT";   //访问集群时的写法，这个路径是多个集群模块的设置好的共同的名字
 
     @Resource   //这里使用@Resource注解也可以
     private RestTemplate restTemplate;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     @Autowired
-    private PaymentService paymentService;
+    PaymentService paymentService;
     @Value("${server.port}")
     private String serverPort;
 

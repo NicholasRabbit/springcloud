@@ -14,6 +14,7 @@
         <module>ben-consumer-80</module>
         <module>daniel-eureka-7001</module>
         <module>edison-eureka-7002</module>
+        <module>ann-payment-8082</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->
