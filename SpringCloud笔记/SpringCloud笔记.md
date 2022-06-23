@@ -114,3 +114,25 @@ eureka:
 ### 9，多个idea同时启动微服务时注意问题
 
 有的端口，注册会互相干扰，应只开一个idea，或关闭其它idea微服务
+
+### 10，Ribbon和nginx负载均衡的区别
+
+Nginx类似于，你去医院，导诊给你安排到哪个科室去看病。
+
+Ribbon类似于，你到了科室，有人给你安排不同的医生给你看病，
+
+![1655992653677](note_images/1655992653677.png)
+
+基本架构示意图
+
+![1655992933805](note_images/1655992933805.png)
+
+![1655992984528](note_images/1655992984528.png)
+
+- eureka-client依赖已经包含ribbon组件，使用时就不用再引入它的依赖了，否则是画蛇添足。
+
+- Ribbon实际就是负载均衡和RestTemplate结合使用起作用。
+
+- RestTemplate的getForObject()和getForEntity()的区别；
+
+  ![1655993488498](note_images/1655993488498.png)
