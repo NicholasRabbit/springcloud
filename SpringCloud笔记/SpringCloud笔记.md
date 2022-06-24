@@ -82,6 +82,8 @@ Eureka可以有多个，即集群，service provider也可以有多个，根据�
 
 5，编写业务代码。
 
+注意：无论是支付模块，还是消费者模块，都是Client，只有Eureka是Server，在主启动类加注解是注意
+
 ### 7，Eureka集群工作原理
 
 互相注册，相互守望
@@ -115,7 +117,58 @@ eureka:
 
 有的端口，注册会互相干扰，应只开一个idea，或关闭其它idea微服务
 
-### 10，Ribbon和nginx负载均衡的区别
+### 10，搭建Eureka集群，服务模块集群总结
+
+1，服务模块搭建集群之后，消费者模块就不能访问指定模块的地址了，而是访问在Eureka注册中心注册的服务"ann-payment"，这个服务集群是由两个模块组成的ann-payment-8081/8082，它们的在Eureka注册的名字都是一样的“ann-payment”。在消费者模块ben-consumer的restTemplate对象调用http://ann-payment/get/1等接口，即可实现访问这两个服务模块，注意要在consumer模块获取restTemplate对象是加@LoadBalanced注解，才会执行负载均衡访问；
+
+2，Eureka搭建集群的目的是为了防止一个注册中心瘫痪导致整个服务停用的情况；
+
+### 11，使用SpringBoot的actuator来进行Eureka实例的健康检查
+
+![1655817488747](note-images/1655817488747.png)
+
+点击这些超链接之后，默认会显示空的，跳转地址是：http://desktop-p7ure9c/actuator/info  ，可以更改info为health :http://desktop-p7ure9c/actuator/health  进行健康状况检查，也可以查其它参数，后期待查
+
+### 12，Eureka的自我保护
+
+![1655818766990](note-images/1655818766990.png)
+
+![1655818750526](note-images/1655818750526.png)
+
+![1655818996438](note-images/1655818996438.png)
+
+![1655819223582](note-images/1655819223582.png)
+
+**Eureka主页提示的含义，是Eureka的自我保护**
+
+1，如果注册到Eureka的某个服务，暂时不可用了，Eureka不会立即删除该服务，而是保留一段时间，因为有可能是网络卡顿，导致该服务模块并没有按时向注册中心发送心跳信息，因此为了保持高可用，Eureka会启动自我保护模式，保留该服务；
+
+2，Eureka的原则是宁可保留有问题的服务，也不会盲目删除它，另一种形式的返乡的宁可错杀一千，不可放过一个；
+
+### 13，Eureka的管理页面设置自定义服务名
+
+![1655889642189](note-images/1655889642189.png)
+
+  [DESKTOP-P7URE9C:ann-payment:8082](http://desktop-p7ure9c:8082/actuator/info) 是Eureka系统默认的名字
+
+```yaml
+eureka:
+  client:
+  ....
+  instance:
+    instance-id: ann-payment-8081   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true       #设置把鼠标放到服务模块名称上时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+```
+
+(1) prefer-ip-address: false
+
+http://desktop-p7ure9c:8082/actuator/info
+
+(2) prefer-ip-address: true
+
+http://172.16.8.230:8081/actuator/info  :这里显示了ip地址
+
+### 14，Ribbon和nginx负载均衡的区别
 
 Nginx类似于，你去医院，导诊给你安排到哪个科室去看病。
 

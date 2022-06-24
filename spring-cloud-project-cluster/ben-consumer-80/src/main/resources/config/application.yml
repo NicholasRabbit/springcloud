@@ -19,3 +19,7 @@ eureka:
     register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  #设置模块的名称
+  instance:
+    instance-id: consumer-80
+    prefer-ip-address: true
