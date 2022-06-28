@@ -17,6 +17,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>2.2.1.RELEASE</version>
         </dependency>
 
         <!--这两个模块是核心模块，每个项目必须要引入：spring-boot-starter-web和spring-boot-starter-actuator-->
