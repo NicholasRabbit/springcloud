@@ -226,3 +226,11 @@ Ribbon类似于，你到了科室，有人给你安排不同的医生给你看�
 
 ![1656424273046](note_images/1656424273046.png)
 
+### 19，Feign是什么?
+
+![1656686262091](note_images/1656686262091.png)
+
+OpenFeign与Feign原理相同，只是在Feign的基础上做了加强，增加了SpringMVC的支持等。
+
+Feign使用在消费端的，
+
