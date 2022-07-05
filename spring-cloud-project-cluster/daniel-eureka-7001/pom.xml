@@ -17,8 +17,8 @@
         Eureka 2.0以上版本不维护了，如果依赖报错，则改为1.x低版本-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>1.4.7.RELEASE</version>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <!--<version>1.4.7.RELEASE</version>-->
         </dependency>
 
 
