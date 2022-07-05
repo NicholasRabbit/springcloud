@@ -8,15 +8,15 @@ server:
 
 spring:
   application:
-    name: ann-payment    #配置服务模块集群时，集群内模块应用名称要一样
+    name: ann-payment    #配置服务模块集群时，集群内模块应用名称要一样，从消费者模块访问集群时就使用改名称，例如http://ann-payment/get/3
   #配置数据库
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver          # mysql驱动包
     url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: 123456
-
+#    password: 123456
+    password: 8989909
 #MyBatis配置
 mybatis:
   #mapper-locations: classpath:mapper/*.xml  #设定MyBatis映射文件的扫描路径
