@@ -230,7 +230,12 @@ Ribbon类似于，你到了科室，有人给你安排不同的医生给你看�
 
 ![1656686262091](note_images/1656686262091.png)
 
-OpenFeign与Feign原理相同，只是在Feign的基础上做了加强，增加了SpringMVC的支持等。
+Feign已停更，目前用OpenFeign
 
-Feign使用在消费端的，
+- OpenFeign与Feign原理相同，只是在Feign的基础上做了加强，增加了SpringMVC的支持等;
 
+- Feign是用在消费端的;
+
+- Feign实际就是类似Ribbon和RestTemplate的结合，依赖中包含Ribbon,只是更好用，功能更强大;
+
+  
