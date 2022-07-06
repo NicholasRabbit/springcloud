@@ -43,10 +43,10 @@ public class ConsumerController {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, String.class);
         HttpHeaders headers = responseEntity.getHeaders();
         MediaType contentType = headers.getContentType();
-        String body = responseEntity.getBody();
+        String responseBody = responseEntity.getBody();   //这里获取responseBody，其数据格式就是json形式的，因此接口如果加@ResponseBody注解，则返回的是json，同理请求参数加注解@RequestBody的用法
         HttpStatus statusCode = responseEntity.getStatusCode();
         int statusCodeValue = responseEntity.getStatusCodeValue();
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = null;
         try {
              writer = response.getWriter();
@@ -56,6 +56,7 @@ public class ConsumerController {
 
         writer.print("headers" + headers.toString() + "<br>");
         writer.print("contentType:" + contentType + "<br>");
+        writer.print("responseBody:" + responseBody + "<br>");
         writer.print("statusCode:" + statusCode + "<br>");
         writer.print("statusCodeValue:" + statusCodeValue + "<br>");
         //输出流清空，关闭
