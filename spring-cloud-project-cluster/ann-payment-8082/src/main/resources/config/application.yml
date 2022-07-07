@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver          # mysql驱动包
     url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: 8989909
+    password: 123456
 
 #MyBatis配置
 mybatis:
@@ -34,7 +34,7 @@ eureka:
     register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
-  #这里不设置自定义名称，不显示 ipd地址，为了和 ann-payment-8081做对比
+  #这里不设置自定义名称，不显示 ip地址，为了和 ann-payment-8081做对比
   #instance:
     #instance-id: ann-payment-8082   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
     #prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问

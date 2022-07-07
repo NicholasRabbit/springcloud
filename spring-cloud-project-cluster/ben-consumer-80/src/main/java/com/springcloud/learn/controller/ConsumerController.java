@@ -43,7 +43,7 @@ public class ConsumerController {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, String.class);
         HttpHeaders headers = responseEntity.getHeaders();
         MediaType contentType = headers.getContentType();
-        String responseBody = responseEntity.getBody();   //这里获取responseBody，其数据格式就是json形式的，因此接口如果加@ResponseBody注解，则返回的是json，同理请求参数加注解@RequestBody的用法
+        String responseBody = responseEntity.getBody();   //这里获取responseBody，其数据格式就是json形式的，相应的，接口如果加@ResponseBody注解，则返回的就是json格式的字符串，同理请求参数加注解@RequestBody的用法
         HttpStatus statusCode = responseEntity.getStatusCode();
         int statusCodeValue = responseEntity.getStatusCodeValue();
         response.setContentType("text/html;charset=UTF-8");
@@ -58,19 +58,39 @@ public class ConsumerController {
         writer.print("contentType:" + contentType + "<br>");
         writer.print("responseBody:" + responseBody + "<br>");
         writer.print("statusCode:" + statusCode + "<br>");
+        writer.print("is2xxSuccessful:" + statusCode.is2xxSuccessful() + "<br>");
         writer.print("statusCodeValue:" + statusCodeValue + "<br>");
         //输出流清空，关闭
         writer.flush();
         writer.close();
     }
 
+
+
     //进行添加数据
     @PostMapping(value="/insert")
     @ResponseBody
-    public CommonResult<PaymentUser> insert(PaymentUser paymentUser){
-        //RestTemplate传输的数据格式，可以为form，或者json
-        CommonResult insertResult = restTemplate.postForObject(PAYMENT_URL + "/payment/insert", paymentUser, CommonResult.class);
+    public CommonResult<PaymentUser> insert(@RequestBody PaymentUser paymentUser){
+        //三，RestTemplate传输的数据格式，可以为form，或者json，使用postForObject(..)方法
+        CommonResult<PaymentUser> insertResult = restTemplate.postForObject(PAYMENT_URL + "/payment/insert", paymentUser, CommonResult.class);
         return insertResult;
     }
+
+    //四，postForEntity(..)方法练习，获取ResponseEntity后的使用方法和上面相同
+    //这里的通讯协议全部都是http协议，后期多研究熟悉此协议
+    @PostMapping(value = "/insertEntity")
+    @ResponseBody
+    public CommonResult<PaymentUser> insertEntity(@RequestBody PaymentUser paymentUser){
+        ResponseEntity<CommonResult> responseEntity = restTemplate.postForEntity(PAYMENT_URL + "/payment/insert", paymentUser, CommonResult.class);
+        HttpStatus statusCode = responseEntity.getStatusCode();
+        if(statusCode.is2xxSuccessful()){
+            return responseEntity.getBody();
+        }else{
+            return new CommonResult<PaymentUser>(444,"添加失败");
+        }
+
+    }
+
+
 
 }
