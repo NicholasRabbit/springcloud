@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>spring-cloud-project-cluster</artifactId>
+        <groupId>com.springcloud.learn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!--第一个Eureka注册中心-->
+    <artifactId>daniel-eureka-7001</artifactId>
+
+    <dependencies>
+        <!--引入Eureka，这里引入的是Eureka的server，不引入eureka-client，让其他模块当client的角色
+        Eureka 2.0以上版本不维护了，如果依赖报错，则改为1.x低版本-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <!--<version>1.4.7.RELEASE</version>-->
+        </dependency>
+
+
+        <!--这两个模块是核心模块，每个项目必须要引入：spring-boot-starter-web和spring-boot-starter-actuator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--=============================-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--引入公用模块-->
+        <dependency>
+            <groupId>com.springcloud.learn</groupId>
+            <artifactId>carol-commons-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-cloud-project-cluster</artifactId>
+        <groupId>com.springcloud.learn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!--公用api模块，把常用的实体类，工具类等放到这里-->
+    <!--工程重构,因为有些实体类，工具类，每个模块都要用到，所以把他们都放到commons-api里,
+        然后把这个模块安装到本地库，别的模块才可引入使用-->
+    <artifactId>carol-commons-api</artifactId>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

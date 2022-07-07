@@ -1,0 +1,2 @@
+1,Ribbon在Consumer模块中使用，实现调用支付服务的负载均衡
+  实际在上个模块中加@LoadBalanced注解就是使用了Ribbon
