@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @Controller
 @RequestMapping(value="/payment")
 public class PaymentController {
@@ -36,6 +38,24 @@ public class PaymentController {
         }else{
             return new CommonResult(444,"添加失败，端口：" + serverPort,null);
         }
+    }
+
+    //Feign模块调用超时测试，设置等待3秒
+    @GetMapping("/feignTimeout/get/{id}")
+    @ResponseBody
+    public CommonResult<PaymentUser> getTimeoutById(@PathVariable(value = "id") Long id){
+        //待用concurrent包的方法，与Thread.sleep(..)方法相同，模拟等待4秒，超过Feign的时间限制
+        try {
+            TimeUnit.SECONDS.sleep(4);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        PaymentUser paymentUser = paymentService.getUserById(id);
+        if(paymentUser != null){
+            return new CommonResult<PaymentUser>(200,"success,port:" + serverPort,paymentUser);
+        }
+        return new CommonResult<>(444,"failure,port" + serverPort,null);
     }
 
 

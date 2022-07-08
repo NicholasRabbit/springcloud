@@ -40,6 +40,7 @@ eureka:
     instance-id: ann-payment-8081   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
     prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
 
+    #设置取消Eureka自我保护机制，client端进行如下设置，Eureka端也要进行相应设置
     #设置客户端client（本模块）向Eureka注册中心发送心跳信息的间隔，单位为秒，默认30秒
 #    lease-renewal-interval-in-seconds: 2
     #设置Eureka Server（）在收到最后一次的心跳信息后等待的上线时间（默认是90s），这里必须大于上面的时间，否则设置无意义

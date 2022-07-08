@@ -21,7 +21,7 @@ public class MyLoadBalancer implements LoadBalancer {
         do{
             current = this.atomicInteger.get();
             next = current >= 2147483647 ? 0 : current + 1;
-        }while(!this.atomicInteger.compareAndSet(current,next));
+        }while(!this.atomicInteger.compareAndSet(current,next));  //这里判断，如果CAS方法判断预期值和当前值一样，则进行替换，并放回true，则!true为false,终端循环，执行下面的语句，返回next
         System.out.println("第几次访问，次数next:" + next);
         return next;
     }

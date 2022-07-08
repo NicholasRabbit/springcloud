@@ -38,6 +38,25 @@ public class PaymentController {
         }
     }
 
+    //Feign模块调用超时测试，设置等待3秒
+    @GetMapping("/feignTimeout/get/{id}")
+    @ResponseBody
+    public CommonResult<PaymentUser> getTimeoutById(@PathVariable(value = "id") Long id){
+        //模拟等待4秒，超过Feign的时间限制
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        PaymentUser paymentUser = paymentService.getUserById(id);
+        if(paymentUser != null){
+            return new CommonResult<PaymentUser>(200,"success,port:" + serverPort,paymentUser);
+        }
+        return new CommonResult<>(444,"failure,port" + serverPort,null);
+    }
+
 
 
 }
