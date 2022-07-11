@@ -6,6 +6,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * OpenFeign使用范例
+ * 1,Feign范例见PaymentFeignService.java;
+ * 2,延时设置测试见ConsumerFeignController.java;
+ * 3,Feign日志增强设置见FeignConfiguration.java及配置文件application.yml
  * */
 
 @SpringBootApplication

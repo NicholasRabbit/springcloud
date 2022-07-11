@@ -28,3 +28,13 @@ ribbon:
   ConnectTimeout: 3000   #设置建立链接后，从服务器读取到可用资源的最大时间限制
 
 
+#设置Feign日志监控哪个接口，以及监控级别，只设置以下内容不起作用，需要进行配置类设置，见FeignConfiguration.java
+logging:
+  level:
+    com.springcloud.learn.service.PaymentFeignService: debug   #设置监控PaymentFeignService接口，级别为debug
+
+
+
+
+
+
