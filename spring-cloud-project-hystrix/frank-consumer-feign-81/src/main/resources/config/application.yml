@@ -1,0 +1,40 @@
+
+#OpenFeign模块相关配置
+
+server:
+  port: 81
+
+spring:
+  application:
+    name: frank-consumer-feign-81  #注册到服务注册中心的名字
+
+#Eureka配置
+eureka:
+  client:
+    fetch-registry: true  #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true  #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+
+  instance:
+    instance-id: consumer-feign-81  #设置模块的名称
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+
+#设置Feign客户端最大等待时间，OpenFeign包括Ribbon，因此这里设置ribbon相关参数即可实现效果
+#默认都是1秒钟
+#如果超过最大时间，则本Feign客户端模块报错
+ribbon:
+  ReadTimeout: 3000   #设置建立链接所用的最大时间限制，单位毫秒
+  ConnectTimeout: 3000   #设置建立链接后，从服务器读取到可用资源的最大时间限制
+
+
+#设置Feign日志监控哪个接口，以及监控级别，只设置以下内容不起作用，需要进行配置类设置，见FeignConfiguration.java
+logging:
+  level:
+    com.springcloud.learn.service.PaymentFeignService: debug   #设置监控PaymentFeignService接口，级别为debug
+
+
+
+
+
+

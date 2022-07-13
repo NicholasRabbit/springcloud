@@ -1,0 +1,24 @@
+
+#访问Eureka地址是：localhost:7001，不是defaultZone里的值
+server:
+  port: 7001
+
+#配置Eureka
+eureka:
+  instance:
+    #hostname: localhost
+    hostname: eureka7001.com    #这里不要写localhost，这里写完，注意，还需要本地环境配置.../etc/hosts文件，进行映射，详见个人笔记
+                                #设置好映射之后，访问Eureka界面的地址就成了eureka7001.com：7001，同理7002
+  client:
+    register-with-eureka: false   #表示不向注册中心注册自己，因为自己就是注册中心服务提供者
+    fecth-registry: false   #表示本模块，自己这端就是注册中心，职责即是维护服务实例，并不需要去检索服务
+    service-url:
+      #defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/   #单机版的Eureka指向自己
+      defaultZone: http://eureka7002.com:7002/eureka/   #集群版，指向其它Eureka注册中心，注意，还需要本地环境配置.../etc/hosts文件，进行映射
+
+  #设置取消Eureka自我保护机制，同时还要在服务端client进行相应设置
+#  server:
+#    enable-self-preservation: false   #默认是true
+#    eviction-interval-timer-in-ms: 5000   #单位是毫秒，这里设置当服务端client五秒以上没回应时，直接去除该服务
+
+

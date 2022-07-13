@@ -1,0 +1,22 @@
+server:
+  port: 80    #消费者模块，使用默认的80接口
+
+spring:
+  application:
+    name: ben-consumer-80  #模块名称，将来注册到微服务用这个名字
+
+
+ #消费者模块不用配置数据源，MyBatis等
+
+#Eureka配置
+eureka:
+  client:
+    #这里写成fetchRegistry也可以
+    fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  #设置模块的名称
+  instance:
+    instance-id: consumer-80
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问

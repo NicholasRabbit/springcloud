@@ -1,0 +1,40 @@
+
+server:
+  port: 8083
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: gabrielle-payment-hystrix-8083   #配置注册到Eureka注册中心服务名称
+    #配置数据库
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver          # mysql驱动包
+    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+#MyBatis配置：
+mybatis:
+  mapper-locations: classpath:mapper/*.xml   #配置扫描映射文件的路径
+  type-aliases-package: com.springcloud.learn.entity   #配置实体类别名
+
+
+#设置sql打印日志：
+logging:
+  level:
+    com.springcloud.learn.mapper: debug
+
+#Eureka配置，把本支付服务注册进Eureka
+eureka:
+  client:
+    fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true    #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone:  http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #把本支付服务注册进Eureka集群
+  #设置服务名称
+  instance:
+    instance-id: gabrielle-payment-hystrix-8083   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true    #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，不设置也可以访问
+

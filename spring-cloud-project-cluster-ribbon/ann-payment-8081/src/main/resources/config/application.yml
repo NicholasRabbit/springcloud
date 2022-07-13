@@ -19,7 +19,7 @@ spring:
 #    password: 8989909
 #MyBatis配置
 mybatis:
-  #mapper-locations: classpath:mapper/*.xml  #设定MyBatis映射文件的扫描路径
+  #mapper-locations: classpath:mapper/*.xml  #设定MyBatis映射文件的扫描路径，resources目录就是classpath
   mapperLocations: classpath*:mapper/**/*Mapper.xml  # 映射文件的扫描路径，也可以设定多重路径
   type-aliases-package: com.springcloud.learn.entity   #设定实体类别名所使用的包，以后不用再xxxMapper.xml里写实体类全路径了
 
@@ -35,10 +35,10 @@ eureka:
     fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
     register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功，本地测试时，在hosts文件中把127.0.0.1映射成了eureka7001/7002.com,方便区分
   instance:
     instance-id: ann-payment-8081   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
-    prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+    prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，不设置当然也可以访问
 
     #设置取消Eureka自我保护机制，client端进行如下设置，Eureka端也要进行相应设置
     #设置客户端client（本模块）向Eureka注册中心发送心跳信息的间隔，单位为秒，默认30秒
