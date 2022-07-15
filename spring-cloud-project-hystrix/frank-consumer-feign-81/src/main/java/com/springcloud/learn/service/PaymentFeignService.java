@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * OpenFeign范例
- * 1，OpenFeign的作用相当于Ribbon和RestTemplate，是两者的结合；
+ * 1，这个Service接口加@FeignClient注解，OpenFeign的作用相当于Ribbon和RestTemplate，是两者的结合；
  * 2，它的使用更便捷了，写在service层，就相当于普通的service一样，更符合日常的使用习惯，但实际是调用另一个模块的服务；
  *    注意它是个接口，不是类
  * 3，OpenFeign调用服务时，是有时间限制的，即有规定的等待时间，默认等待1秒钟，可以在配置文件进行设置；
