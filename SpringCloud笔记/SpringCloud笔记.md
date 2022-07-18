@@ -300,3 +300,25 @@ Hystrix用到了Tomcat的线程池
 3. 断路器在什么情况下开始作用
 
 ![1657806427657](note-images/1657806427657.png)
+
+### 22，SpringCloud  Gateway概述
+
+1，SpringCloud  Gateway是什么？
+
+它是Spring开发的一个网关应用，替代zuul  1.x；
+
+SpringCloud  Gateway是基于WebFlux实现的，而WebFlux底层采用的是高性能Reactor模式的Netty框架。
+
+2，能干什么？
+
+- 反向代理；
+- 鉴权；
+- 流量监控；
+- 熔断；
+- 日志监控……等等
+
+
+
+微服务中网关的位置
+
+<img src="note-images/1658151484973.png" alt="1658151484973" style="zoom:60%;" />
