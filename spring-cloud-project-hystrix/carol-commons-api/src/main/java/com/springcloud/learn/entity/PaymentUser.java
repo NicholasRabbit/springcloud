@@ -1,6 +1,10 @@
 package com.springcloud.learn.entity;
 
-public class PaymentUser {
+import java.io.Serializable;
+
+public class PaymentUser implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;

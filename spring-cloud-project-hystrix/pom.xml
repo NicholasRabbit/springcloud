@@ -17,6 +17,7 @@
         <module>ann-payment-8082</module>
         <module>frank-consumer-feign-81</module>
         <module>gabrielle-payment-hystrix-8083</module>
+        <module>hans-consumer-hystrix-82</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->
