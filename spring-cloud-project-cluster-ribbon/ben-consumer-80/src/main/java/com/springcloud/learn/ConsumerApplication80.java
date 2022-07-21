@@ -18,7 +18,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * 2，第二步，根据用户指定的策略，在EurekaServer注册中心选择一个地址，进行调用；
  * Ribbon提供多种策略，如轮询，随机，根据相应时间加权等
  *
- * 三，自定义Ribbon的负载均衡策略，见myRibbon内设置类笔记
+ * 三，自定义Ribbon的负载均衡策略，见myRibbon包内设置类笔记
  *
  * 四，手写轮询算法，模拟Ribbon源码，加深理解
  *    这个手写的轮询算法类必须放在可被扫描到的地方
