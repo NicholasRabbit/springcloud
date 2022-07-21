@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * 2，它的使用更便捷了，写在service层，就相当于普通的service一样，更符合日常的使用习惯，但实际是调用另一个模块的服务；
  *    注意它是个接口，不是类
  * 3，OpenFeign调用服务时，是有时间限制的，即有规定的等待时间，默认等待1秒钟，可以在配置文件进行设置；
+ * 4，注意：
+ *    一个服务模块只能对应一个Feign，再写个 @FeignClient(value="ANN-PAYMENT") PaymentFeignService{ }
+ *    就会报错: “The bean 'ANN-PAYMENT.FeignClientSpecification' could not be registered. A bean with that name has already been defined and overriding is disabled”
  * */
 
 

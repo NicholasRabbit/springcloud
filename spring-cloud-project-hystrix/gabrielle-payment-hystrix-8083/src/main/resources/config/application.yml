@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: gabrielle-payment-hystrix-8083   #配置注册到Eureka注册中心服务名称
+    name: gabrielle-payment-hystrix   #配置注册到Eureka注册中心服务名称
     #配置数据库
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

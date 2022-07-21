@@ -40,7 +40,7 @@ public class PaymentController {
         }
     }
 
-    //Feign模块调用超时测试，设置等待3秒
+    /**Feign模块调用超时测试，设置等待3秒*/
     @GetMapping("/feignTimeout/get/{id}")
     @ResponseBody
     public CommonResult<PaymentUser> getTimeoutById(@PathVariable(value = "id") Long id){

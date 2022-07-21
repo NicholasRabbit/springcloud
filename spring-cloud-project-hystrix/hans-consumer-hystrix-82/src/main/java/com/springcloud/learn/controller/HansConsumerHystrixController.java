@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  * 总结：
  * 使用@HystrixCommand注解指定降级方法，每个接口都要单独配置方法，如此会造成代码冗余；
  * 下节配置全局处理服务降级的方法。
+ * fallback的意思为备用方案，当主方案失败时启用的方案
  * */
 
 @Controller
@@ -30,7 +31,7 @@ public class HansConsumerHystrixController {
 
     /**
      * 1，由于在配置文件进行了配置，及主启动类里加了@EnableHystrix注解，相当于本模块启用了Hystrix，即使这个请求方法不加@HystrixCommand，也会起作用
-     *    Hystrix默认请求的超时时间是1秒(见HystrixCommandProperties.java)，当本消费这模块调用支付模块时，支付模块响应超时或出错则会触发Hystrix降级处理(Payment模块debug时间长也会)，
+     *    Hystrix默认请求的超时时间是1秒(见HystrixCommandProperties.java)，当本消费者模块调用支付模块时，支付模块响应超时或出错则会触发Hystrix降级处理(Payment模块debug时间长也会)，
      *    即使没有处理降级的方法，也会返回系统默认的降级提示页面。
      * 2，但是本消费者模块，这里的get方法设置超时，不会触发降级。
      * */
@@ -50,7 +51,7 @@ public class HansConsumerHystrixController {
     /**
      * 加了@HystrixCommand注解，必须有对应的处理降级的方法，没有则报错，且该方法的返回值和形参必须与请求方法的一致，否则报错：无法找到降级方法。
      * */
-    //这里添加成功也会调用熔断方法，待处理？？
+    //这里添加成功也会调用熔断方法，后期待研究原因！！！
     @PostMapping(value = "/insert")
     @ResponseBody                   //这里的"myFallbackMethod"就是处理降级的方法名
     @HystrixCommand(fallbackMethod = "myFallbackMethod", commandProperties = {@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="3000")})

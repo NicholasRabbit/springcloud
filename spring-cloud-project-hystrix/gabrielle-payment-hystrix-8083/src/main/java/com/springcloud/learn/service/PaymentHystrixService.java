@@ -1,6 +1,5 @@
 package com.springcloud.learn.service;
 
-import com.springcloud.learn.entity.CommonResult;
 import com.springcloud.learn.entity.PaymentUser;
 
 public interface PaymentHystrixService {

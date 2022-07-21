@@ -5,10 +5,7 @@ import com.springcloud.learn.entity.PaymentUser;
 import com.springcloud.learn.service.PaymentHystrixService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -66,5 +63,27 @@ public class PaymentHystrixController {
 
         return new CommonResult<PaymentUser>(444,"failure,port" + serverPort,null);
     }
+
+
+    /**consumer83 模块Feign降级调用出错接口 : 1*/
+    @GetMapping("/feignError/get/{id}")
+    @ResponseBody
+    public CommonResult<PaymentUser> getErrorById(@PathVariable(value = "id") Long id){
+        int i = 10/0;  //抛出运行时异常，服务出错，触发调用者的降级
+        PaymentUser paymentUser = paymentHystrixService.getUserById(id);
+        if(paymentUser != null){
+            return new CommonResult<PaymentUser>(200,"success,port:" + serverPort,paymentUser);
+        }
+        return new CommonResult<>(444,"failure,port" + serverPort,null);
+    }
+
+    /**Feign降级调用出错接口 : 2*/
+    @PostMapping(value="/feignErrorInsert")
+    @ResponseBody
+    public CommonResult<PaymentUser> feignErrorInsert(@RequestBody PaymentUser user){
+        int i = 10/0;  //抛出运行时异常，服务出错，触发调用者的降级
+        return  new CommonResult<>(000,"测试");
+    }
+
 
 }

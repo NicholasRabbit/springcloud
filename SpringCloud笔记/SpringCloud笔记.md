@@ -119,9 +119,19 @@ eureka:
 
 ### 10，搭建Eureka集群，服务模块集群总结
 
+**服务模块集群总结**
+
 1，服务模块搭建集群之后，消费者模块就不能访问指定模块的地址了，而是访问在Eureka注册中心注册的服务"ann-payment"，这个服务集群是由两个模块组成的ann-payment-8081/8082，它们的在Eureka注册的名字都是一样的“ann-payment”。在消费者模块ben-consumer的restTemplate对象调用http://ann-payment/get/1等接口，即可实现访问这两个服务模块，注意要在consumer模块获取restTemplate对象是加@LoadBalanced注解，才会执行负载均衡访问；
 
-2，Eureka搭建集群的目的是为了防止一个注册中心瘫痪导致整个服务停用的情况；
+2，消费者模块或其它模块调用服务模块时，一个模块只能有一个FeignService;
+
+**Eureka模块集群总结**
+
+1，Eureka搭建集群的目的是为了防止一个注册中心瘫痪导致整个服务停用的情况；
+
+2，搭建要领，各Eureka模块相互守望，相互注册。
+
+
 
 ### 11，使用SpringBoot的actuator来进行Eureka实例的健康检查
 
@@ -235,10 +245,33 @@ Ribbon类似于，你到了科室，有人给你安排不同的医生给你看�
 Feign已停更，目前用OpenFeign
 
 - OpenFeign与Feign原理相同，只是在Feign的基础上做了加强，增加了SpringMVC的支持等;
-
 - Feign是用在消费端的;
-
 - Feign实际就是类似Ribbon和RestTemplate的结合，依赖中包含Ribbon,只是更好用，功能更强大;
+
+**FeignService使用注意事项：**
+
+一个服务模块只能有一个FeignService，否则报错，例：在consumer80模块的FeignService，调用ANN-PAYMENT模块，两个Feign都调ANN-PAYMENT，就会报错：
+
+```txt
+报错信息
+“The bean 'ANN-PAYMENT.FeignClientSpecification' could not be registered. A bean with that name has already been defined and overriding is disabled”
+```
+
+```java
+@Service
+@FeignClient(value="ANN-PAYMENT",fallback = FeignPaymentHystrixService02Impl.class)
+public interface FeignPaymentService {}
+```
+
+```java
+@Service
+@FeignClient(value="ANN-PAYMENT",fallback = FeignPaymentHystrixService02Impl.class)
+public interface FeignPaymentService02 {}
+```
+
+
+
+
 
 
 

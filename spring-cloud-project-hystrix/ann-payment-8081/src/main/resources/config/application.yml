@@ -8,7 +8,7 @@ server:
 
 spring:
   application:
-    name: ann-payment    #1，配置服务模块集群时，集群内模块应用名称要一样，从消费者模块访问集群时就使用改名称，例如http://ann-payment/get/3；
+    name: ann-payment    #1，配置服务模块集群时，集群内模块应用名称要一样，从消费者模块访问集群时就使用该名称，例如http://ann-payment/get/3；
                          #2，注意只有注册到Eureka的模块才可以使用域名调用，外部如果在浏览器地址栏直接输入无法调用；
 
   #配置数据库

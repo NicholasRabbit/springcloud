@@ -7,7 +7,7 @@ import com.springcloud.learn.entity.CommonResult;
 import com.springcloud.learn.entity.PaymentUser;
 
 import com.springcloud.learn.service.FeignPaymentHystrixService;
-import com.springcloud.learn.service.FeignPaymentHystrixService8083;
+import com.springcloud.learn.service.FeignPaymentHystrixService02;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +20,11 @@ import java.util.concurrent.TimeUnit;
  *   (1)根据源码中的注解可知，所有进行降级的请求方法的返回值必须与defaultFallback属性指定的统一处理降级的方法的返回值相同;
  *   (2)该属性指定的降级方法没有形参列表；
  *   (3)所有使用统一降级方法的请求需加@HystrixCommand注解，且无需写属性
- * 2，@DefaultProperties内的属性和@HystrixCommang一样，用法也一样
+ * 2，@DefaultProperties内的属性和@HystrixCommand一样，用法也一样
  * 3，如果有的请求方法不想用全局规定的处理降级方法，和超时限制等，还直接加@HystrixCommand注解，自己定义相关属性值即可；
+ * 4，使用@DefaultProperties注解的方式虽然解决了代码膨胀的问题，但是处理降级的备用方法还是和请求方法在一起，耦合紧密，
+ *    解决方案，写一个FeignPaymentHystrixService.java的实现类，由这个类的方法来处理降级即可。
+ *    具体见IanConsumerHystrixController02和FeignPaymentHystrixService02
  * */
 
 @Controller
@@ -32,8 +35,6 @@ public class IanConsumerHystrixController {
     @Resource
     FeignPaymentHystrixService feignPaymentHystrixService;
 
-    @Resource
-    FeignPaymentHystrixService8083 feignPaymentHystrixService8083;
 
     //不进行降级处理的方法，做对比
     @GetMapping(value = "/get/{id}")
@@ -43,7 +44,7 @@ public class IanConsumerHystrixController {
         return commonResult;
     }
 
-    /**一，该请求随有超时，但是@DefaultProperties规定的最大等待时间时5秒，因此本请求方法不会触发服务降级*/
+    /**一，该请求随有超时，但是未超过@DefaultProperties规定的最大等待时间时5秒，因此本请求方法不会触发服务降级*/
     @HystrixCommand
     @GetMapping(value = "/getTimeout/{id}")
     @ResponseBody
