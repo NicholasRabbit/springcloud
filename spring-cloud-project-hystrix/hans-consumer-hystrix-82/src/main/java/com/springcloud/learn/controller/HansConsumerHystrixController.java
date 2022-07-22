@@ -62,7 +62,7 @@ public class HansConsumerHystrixController {
 
     /**
      * 1，服务降级后调用的方法，进行温馨提示
-     * 2，服务降级的方法的"返回值和形参列表"必须与请求方法一致，就会方法重载时找不到该方法，或者否则报错：incompatible ..，
+     * 2，服务降级的方法的"返回值和形参列表"必须与请求方法一致，方法名不用和请求方法一致，就会方法重载时找不到该方法，或者否则报错：incompatible ..，
      * */
     public CommonResult<PaymentUser> myFallbackMethod(PaymentUser paymentUser){
         return new CommonResult(444,"降级方法与请求形参相同==>服务降级！");

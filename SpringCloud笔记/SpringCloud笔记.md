@@ -334,7 +334,45 @@ Hystrix用到了Tomcat的线程池
 
 ![1657806427657](note-images/1657806427657.png)
 
-### 22，SpringCloud  Gateway概述
+### 22，Hystrix的dashboard使用方法
+
+1，启动类要设置ServletRegistrationBean
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+@EnableHystrix
+@EnableFeignClients
+public class ConsumerHystrixApplication83 {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerHystrixApplication83.class,args);
+    }
+
+    /**
+     * 若想要Hystrix的dashboard监视本模块，需追加以下方法；
+     * 配置ServletRegistrationBean，因为springboot的默认路径不是"/hystrix.stream"，而dashboard页面的规定访问路径格式是：http://localhost:83/hystrix.stream
+     * 因此需要加以下配置。
+     * */
+    @Bean
+    public ServletRegistrationBean getServlet() {
+        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.addUrlMappings("/hystrix.stream");
+        registrationBean.setName("HystrixMetricsStreamServlet");
+        return registrationBean;
+    }
+}
+```
+
+2，界面填写方式
+
+![1658480990741](note-images/1658480990741.png)
+
+
+
+### 23，SpringCloud  Gateway概述
 
 ##### 1)，SpringCloud  Gateway是什么？
 

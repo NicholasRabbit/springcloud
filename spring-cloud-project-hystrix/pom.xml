@@ -19,6 +19,7 @@
         <module>gabrielle-payment-hystrix-8083</module>
         <module>hans-consumer-hystrix-82</module>
         <module>ian-consumer-hystrix-83</module>
+        <module>jenny-consumer-hystrix-dashboard-90</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->

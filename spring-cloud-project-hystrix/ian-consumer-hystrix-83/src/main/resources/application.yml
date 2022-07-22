@@ -4,7 +4,7 @@ server:
 #配置服务名称
 spring:
   application:
-    name: ian-consumer-hystrix-83
+    name: ian-consumer-hystrix
 
 #配置Eureka
 eureka:
