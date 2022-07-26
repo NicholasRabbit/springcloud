@@ -402,6 +402,10 @@ SpringCloud  Gateway是基于WebFlux实现的，而WebFlux底层采用的是高�
 
 ![1658413488962](note-images/1658413488962.png)
 
+GateWay模块启动时加载断言的配置参数：
+
+![1658837594913](note-images/1658837594913.png)
+
 工作流程：
 
 ![1658413739340](note-images/1658413739340.png)
@@ -430,6 +434,50 @@ SpringCloud  Gateway是基于WebFlux实现的，而WebFlux底层采用的是高�
 
 ### 25，SpringCloud Config是什么？怎么用？能干嘛？	
 
-![1658760006050](note_images/1658760006050.png)
+![1658843315411](note-images/1658843315411.png)
 
 ![1658759800389](note_images/1658759800389.png)
+
+为什么用统一配置SpringCloud  Config
+
+![1658841121330](note-images/1658841121330.png)
+
+分布式配置中心目前有三套方案：
+
+1，SpringCloud Config  + SpringCloud Bus；
+
+2,   Nacos(主流)；
+
+3,  Apollo (携程开源软件)；
+
+### 26，SpringCloud Config配置注意事项
+
+![1658843770679](note-images/1658843770679.png)
+
+1，如图，ConfigServer模块从github上获取各个环境的配置文件，是总的配置中心，在这里统一配置相关参数，避免了微服务中模块过多，每个模块参数单独修改的问题。
+
+  依赖引入，注意有依赖包server
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-config-server</artifactId>
+</dependency>
+```
+
+2，Client  A/B/C相当于客户端，相当于Eureka  Client，这几个模块需要从Coinfig  Server总配置中心获取统一的配置文件，客户端模块也可以有自己的特殊配置。
+
+同时，客户端模块需要有一个bootstrop.yml配置文件，此文件属于系统级别的，加载优先级高于application.yml，在其内配置引入Config  Server中的配置参数，则客户端启动时会优先引入公共的配置参数，从而达到统一配置的作用。
+
+Client  A/B/C引入依赖，没有server
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+```
+
+**bootstrap.yml详解：**，引入此文件是为了分级管理配置文件
+
+![1658844324807](note-images/1658844324807.png)

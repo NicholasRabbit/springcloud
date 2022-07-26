@@ -1,0 +1,6 @@
+
+
+1,dos窗口使用curl命令访问接口的写法：
+  cUrl ： 客户端URL，是一个传输数据的命令行工具
+  > curl http://localhost:9001/feign-consumer/get/1 --cookie "userName=Tom" ： 带cookie访问接口
+  > curl http://localhost:9001/feign-consumer/get/1 --cookie "userName=Tom" -H "X-Request-Id:10" : 加多个请求参数的写法

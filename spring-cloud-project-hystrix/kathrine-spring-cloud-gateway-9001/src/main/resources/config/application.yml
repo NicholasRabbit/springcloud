@@ -6,5 +6,5 @@ server:
 #配置文件切换，为了区分配置静态路由和动态路由配置，写在一起太乱
 spring:
   profiles:
-    active: static
-    #active: dynamic
+#    active: static
+    active: dynamic

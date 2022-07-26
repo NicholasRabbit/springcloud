@@ -1,5 +1,7 @@
 
-#本配置文件中“routes”参数为静态路由设置范例
+#1,本配置文件中“routes”参数为静态路由设置范例
+#2,routes中的uri写成http://localhost:81，为静态路由设置，如果多个服务组成集群或者微服务项目中模块多，端口也多，这样设置就太浪费时间，
+#  可使用动态路由设置，详见在application-dynamic.yml中范例。
 
 #设置模块参数
 spring:
@@ -12,9 +14,9 @@ spring:
           #enabled: true  #开启动态路由功能，即从注册中心获取统一的服务名进行访问，例"ann-payment"，而不是"localhost:8081"这样，这里注释，仅为对比，实际应用在application-dynamic.yml中设置
       routes:   #这里设置网关的路由转发，routes为复数，代表可设置多个路由，根据匹配规则转发到不同的服务。
         - id: consumer-feign-81   #网关代理的路由的id，名称自定义，必须唯一，建议设置和服务模块名相关。
-          uri: http://localhost:81   #提供服务的模块地址，本例设置之访问frank-consumer-feign-81模块。静态路由设施方式
+          uri: http://localhost:81   #提供服务的模块地址，本例设置之访问frank-consumer-feign-81模块。静态路由设置方式
           predicates:
-            - Path=/feign-consumer/get/**   #配置访问consumer-feign-81的路径
+            - Path=/feign-consumer/get/**   #配置访问consumer-feign-81的路径，当浏览器输入此地址时就访问localhost：81端口的服务，下面的同理
         - id: consumer-hystrix-82
           uri: http://localhost:82
           predicates:
