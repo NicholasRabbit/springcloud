@@ -1,0 +1,10 @@
+
+#配置端口号，外部访问微服务，直接访问此端口，原来的服务提供模块不再对外暴露地址及端口
+server:
+  port: 9001
+
+#配置文件切换，为了区分配置静态路由和动态路由配置，写在一起太乱
+spring:
+  profiles:
+    active: static
+    #active: dynamic

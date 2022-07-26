@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>spring-cloud-project-hystrix</artifactId>
+        <groupId>com.springcloud.learn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!--网关模块-->
+    <artifactId>kathrine-spring-cloud-gateway-9001</artifactId>
+
+
+    <dependencies>
+        <!--注意：网关模块不需要web和actuator依赖：
+        spring-boot-starter-web,spring-boot-starter-actuator
+        -->
+        <!--SpringCloud Gateway依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
+        <!--Eureka服务端依赖，需要把网关模块注册进Eureka-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!--其它模块暂时不需要-->
+
+    </dependencies>
+
+
+
+</project>

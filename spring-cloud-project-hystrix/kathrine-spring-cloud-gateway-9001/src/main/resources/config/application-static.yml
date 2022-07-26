@@ -1,0 +1,42 @@
+
+#本配置文件中“routes”参数为静态路由设置范例
+
+#设置模块参数
+spring:
+  application:
+    name: spring-cloud-gateway-9001
+  cloud:
+    gateway:
+      #discovery:
+        #locator:
+          #enabled: true  #开启动态路由功能，即从注册中心获取统一的服务名进行访问，例"ann-payment"，而不是"localhost:8081"这样，这里注释，仅为对比，实际应用在application-dynamic.yml中设置
+      routes:   #这里设置网关的路由转发，routes为复数，代表可设置多个路由，根据匹配规则转发到不同的服务。
+        - id: consumer-feign-81   #网关代理的路由的id，名称自定义，必须唯一，建议设置和服务模块名相关。
+          uri: http://localhost:81   #提供服务的模块地址，本例设置之访问frank-consumer-feign-81模块。静态路由设施方式
+          predicates:
+            - Path=/feign-consumer/get/**   #配置访问consumer-feign-81的路径
+        - id: consumer-hystrix-82
+          uri: http://localhost:82
+          predicates:
+            - Path=/hystrix/consumer/get/**
+            #断言还可以设置其它参数，可参Spring Cloud Gateway照官方文档。
+            #- After=
+            #- Cookie=
+            #- Header=
+            #......
+
+#配置Eureka,网关也要注册到Eureka注册中心里去
+eureka:
+  client:
+    fetch-registry: true  #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true  #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+    #设置在Eureka注册中心显示的服务名称
+  instance:
+    instance-id: spring-cloud-gateway-9001
+    prefer-ip-address: true  #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，
+
+
+
+
