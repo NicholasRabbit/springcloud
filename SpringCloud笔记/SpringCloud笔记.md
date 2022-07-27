@@ -465,7 +465,7 @@ GateWay模块启动时加载断言的配置参数：
 </dependency>
 ```
 
-2，Client  A/B/C相当于客户端，相当于Eureka  Client，这几个模块需要从Coinfig  Server总配置中心获取统一的配置文件，客户端模块也可以有自己的特殊配置。
+2，Client  A/B/C相当于客户端，类似于Eureka  Client，这几个模块需要从Coinfig  Server总配置中心获取统一的配置文件，客户端模块也可以有自己的特殊配置。
 
 同时，客户端模块需要有一个bootstrop.yml配置文件，此文件属于系统级别的，加载优先级高于application.yml，在其内配置引入Config  Server中的配置参数，则客户端启动时会优先引入公共的配置参数，从而达到统一配置的作用。
 
@@ -478,6 +478,24 @@ Client  A/B/C引入依赖，没有server
 </dependency>
 ```
 
-**bootstrap.yml详解：**，引入此文件是为了分级管理配置文件
+**bootstrap.yml详解：**引入此文件是为了分级管理配置文件
 
 ![1658844324807](note-images/1658844324807.png)
+
+### 27，SpringCloud  Bus消息总线概述
+
+是什么？
+
+(1)SpringCloud  Bus配合SpringCloud  Config使用，实现配置的动态刷新，即中心配置模块的配置参数改变了，客户端动态刷新，不需要手动刷新；
+
+(2)支持两种消息代理：RabbitMQ和Kafka
+
+![1658913160668](note-images/1658913160668.png)
+
+能干嘛？
+
+![1658913343739](note-images/1658913343739.png)
+
+为什么叫消息总线？
+
+![1658913390215](note-images/1658913390215.png)

@@ -16,7 +16,7 @@ spring:
           predicates:
             - Path=/feign-consumer/get/**   #配置访问consumer-feign-81的路径
             #断言还可以设置其它参数，可参Spring Cloud Gateway照官方文档。
-            - After=2022-07-26T20:35:18.630+08:00[Asia/Shanghai]   #此处设置只有在规定时间之后才可访问此路径Path，在此之前则报错。注意时间格式，查看在GatewayTest中的获取方式
+            - After=2022-07-26T20:35:18.630+08:00[Asia/Shanghai]   #此处设置只有在规定时间之后才可访问此路径Path，在此之前则报错。注意时间格式，查看在GatewayTest.java中的获取方式
             - Cookie=userName,Tom   #此处表示当访问的请求中的Cookie中含有键值对userName=Tom时才会放行，命令行请求的写法：curl http://localhost:9001/feign-consumer/get/1 --cookie "userName=Tom"，见本章节Gateway笔记
             - Header=X-Request-Id, \d+  #表示请求头中必须有X-Request-Id属性并且其值必须大于0，命令行请求的写法；curl http://localhost:9001/feign-consumer/get/1 --cookie "userName=Tom" -H "X-Request-Id:10"
             #...... 其它请求参数参照SpringCloud官方文档
