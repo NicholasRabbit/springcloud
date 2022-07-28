@@ -1,0 +1,3 @@
+[submodule "spring-cloud-config"]
+	path = spring-cloud-config
+	url = git@gitee.com:plms/spring-cloud-config.git
