@@ -7,10 +7,12 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址
+          uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址，注意这里用SSH:git@gitee.com:plms/spring-cloud.git报错
+          #username:  #也可设置用户名密码，这里git本地有ssh key自动存了，就不用设置了(个人推测，未证实)
+          #password:
           force-pull: true
           search-paths:
-            - SpringCloud/config-center    #仓库名
+            - spring-cloud/config-center     #仓库名
       label: master  #要读取的分支名
 
 
