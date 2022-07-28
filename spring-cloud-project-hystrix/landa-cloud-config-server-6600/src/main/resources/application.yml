@@ -10,7 +10,7 @@ spring:
           uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址
           force-pull: true
           search-paths:
-            - SpringCloud    #仓库名
+            - SpringCloud/config-center    #仓库名
       label: master  #要读取的分支名
 
 
