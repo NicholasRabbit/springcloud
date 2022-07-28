@@ -7,9 +7,9 @@ spring:
     config:
       server:
         git:
-          uri: git@gitee.com:plms/spring-cloud-config.git   #SpringCloud配置中心仓库地址
+          uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址
           serarch-paths:
-            - spring-cloud-config   #仓库名
+            - SpringCloud    #仓库名
       label: master  #要读取的分支名
 
 
