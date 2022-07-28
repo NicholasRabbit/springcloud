@@ -7,12 +7,12 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址，注意这里用SSH:git@gitee.com:plms/spring-cloud.git报错
-          #username:  #也可设置用户名密码，这里git本地有ssh key自动存了，就不用设置了(个人推测，未证实)
+          uri: https://gitee.com/plms/spring-cloud.git   #SpringCloud配置中心仓库地址，注意这里用SSH:git@gitee.com:plms/spring-cloud.git报错(原因待查)。
+          #username:  #也可设置用户名密码，这里git本地自动存了，就不用设置了(个人推测，未证实)
           #password:
-          force-pull: true
+          force-pull: true   #设置强制拉取，有时候本地有未提交的修改文件，不加此设置会报错：Cannot pull from remote。。。the working tree is not clean
           search-paths:
-            - spring-cloud/config-center     #仓库名
+            - spring-cloud-config     #仓库名，配置文件config-dev.yml要放到仓库根目录下才行，多重路径无效
       label: master  #要读取的分支名
 
 
@@ -23,5 +23,8 @@ eureka:
     register-with-eureka: true  #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  instance:
+    instance-id: cloud-config-server-center-6600    #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
 
 
