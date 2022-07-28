@@ -436,9 +436,11 @@ GateWay模块启动时加载断言的配置参数：
 
 ![1658843315411](note-images/1658843315411.png)
 
+**能干嘛？**
+
 ![1658759800389](note_images/1658759800389.png)
 
-为什么用统一配置SpringCloud  Config
+**为什么用统一配置SpringCloud  Config**
 
 ![1658841121330](note-images/1658841121330.png)
 

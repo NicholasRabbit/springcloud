@@ -21,6 +21,7 @@
         <module>ian-consumer-hystrix-83</module>
         <module>jenny-consumer-hystrix-dashboard-90</module>
         <module>kathrine-spring-cloud-gateway-9001</module>
+        <module>landa-cloud-config-server-6600</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->
