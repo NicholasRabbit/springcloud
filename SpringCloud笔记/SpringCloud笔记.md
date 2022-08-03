@@ -492,6 +492,8 @@ Client  A/B/C引入依赖，没有server
 
 (2)支持两种消息代理：RabbitMQ和Kafka
 
+动态刷新流程图
+
 ![1658913160668](note-images/1658913160668.png)
 
 能干嘛？

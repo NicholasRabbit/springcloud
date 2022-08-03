@@ -12,7 +12,7 @@ spring:
           #password:
           force-pull: true   #设置强制拉取，有时候本地有未提交的修改文件，不加此设置会报错：Cannot pull from remote。。。the working tree is not clean
           search-paths:
-            - config     #仓库名，配置文件config-dev.yml要放到仓库根目录下才行，多重路径无效
+            - spring-cloud-config     #仓库名，配置文件要放到仓库根目录下才行，多重路径无效
       label: master  #要读取的分支名
 
 
