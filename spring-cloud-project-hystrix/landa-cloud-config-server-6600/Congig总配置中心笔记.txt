@@ -1,2 +1,5 @@
+
+landa-cloud-config-server-6600和matt-cloud-config-client-6611不使用bus，RabbitMQ
+
 1，报错：java.lang.NoSuchMethodError: org.springframework.cloud.config.environment.Environment.normalize
    原因：spring-cloud-config-server依赖的版本不对，一般用默认的版本
