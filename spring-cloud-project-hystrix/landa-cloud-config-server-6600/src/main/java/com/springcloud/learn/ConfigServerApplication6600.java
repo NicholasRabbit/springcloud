@@ -12,6 +12,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * 3，如果git中只有一个配置文件，且名字是application.yml/properties，这是访问路径中的http://localhost:6600/master/xxx，最后的xxx随便输也可访问。
  * 未解决问题：
  * git仓库的配置文件改成version=2之后，通过浏览器访问还是version=1,重启也不管用，原因待查。
+ * 原因：application.yml文件里的git地址uri写错了，写成spring-cloud的了，而修改的是spring-cloud-config仓库
  * */
 
 

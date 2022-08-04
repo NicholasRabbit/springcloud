@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 因此会获取总配置中心的配置信息，经过此方式实现了统一配置的目的；
  * 3，由于总配置中心模块6600是直连的git，所以运维工程师改变git上的配置文件信息时，6600模块无需重启，直接刷新http://localhost:6600/master/config-dev.yml
  * 即可获取最新配置信息，但是客户端模块6611没有直连，刷新没用，必须重启才管用。
- *   解决方案：需要运维工程师请求6611，执行：curl -X POST "http://localhost:6600/actuator/refresh",
- *   同时在Controller加@RefreshScope注解即可。
- *   (由于git修改配置文件后总配置中心刷新不起作用，因此客户端刷新也不管用，原因待查)
+ *   解决方案：在Controller加@RefreshScope注解，同时需要运维工程师请求6611，执行：curl -X POST "http://localhost:6611/actuator/refresh",
  *
+ *   注意：由于git修改配置文件后总配置中心刷新不起作用，因此客户端刷新也不管用，原因待查。
+ *   原因：application.yml文件里的git地址uri写错了，写成spring-cloud的了，而修改的是spring-cloud-config仓库
  * 4，前面的支付模块，消费者模块相对于总配置中心来说就是客户端的角色；
  * */
 
