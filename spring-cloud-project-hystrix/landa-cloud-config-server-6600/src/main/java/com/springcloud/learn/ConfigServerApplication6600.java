@@ -10,7 +10,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  *    http://localhost:6600/master/config-dev.yml: master是分支名，在application.yml里进行设置
  * 2，config-dev.yml在仓库根目录下，即spring-cloud-config（仓库名）总目录下才可访问，如果放到spring-cloud-config/config/xxx.yml目录下则无法访问，原因待查；
  * 3，如果git中只有一个配置文件，且名字是application.yml/properties，这是访问路径中的http://localhost:6600/master/xxx，最后的xxx随便输也可访问。
- * 未解决问题：
+ * 未解决问题(已解决)：
  * git仓库的配置文件改成version=2之后，通过浏览器访问还是version=1,重启也不管用，原因待查。
  * 原因：application.yml文件里的git地址uri写错了，写成spring-cloud的了，而修改的是spring-cloud-config仓库
  * */

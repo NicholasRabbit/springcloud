@@ -17,8 +17,8 @@ eureka:
       defaultZone: http://eureka7002.com:7002/eureka/   #集群版，指向其它Eureka注册中心，注意，还需要本地环境配置.../etc/hosts文件，进行映射
 
   #设置取消Eureka自我保护机制，同时还要在服务端client进行相应设置
-#  server:
-#    enable-self-preservation: false   #默认是true
-#    eviction-interval-timer-in-ms: 5000   #单位是毫秒，这里设置当服务端client五秒以上没回应时，直接去除该服务
+  server:
+    enable-self-preservation: false   #默认是true
+    eviction-interval-timer-in-ms: 5000   #单位是毫秒，这里设置当服务端client五秒以上没回应时，直接去除该服务
 
 

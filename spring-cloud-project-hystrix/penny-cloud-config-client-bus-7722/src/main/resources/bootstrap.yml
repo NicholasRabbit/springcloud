@@ -1,0 +1,42 @@
+
+#客户端使用bootstrap.yml名字的配置文件，以此命名是系统级别的，加载优先级高于application.yml
+
+server:
+  port: 7722
+
+
+spring:
+  application:
+    name: config-client-bus-772
+  cloud:
+    config:
+      label: master  #分支名称
+      name: config  #配置文件名称
+      profile: dev  #指定的后缀名，通过以上的三个配置组成，访问的是master分支上的config-dev.yml文件，访问地址见下面的uri: http://localhost:6600/master/config-dev.yml
+      uri: http://localhost:7700   #配置中心的地址
+  #客户端配置RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#把服务注册到Eureka注册中心
+eureka:
+  client:
+    fetch-registry: true  #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true   #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  instance:
+    instance-id: config-client-bus-7722   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+
+
+#对外暴露监控端点，方便访问接口测试，此配置需要有actuator依赖
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   #暴露所有接口，默认是health,info
+

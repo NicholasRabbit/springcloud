@@ -1,0 +1,49 @@
+server:
+  port: 7700
+
+
+
+spring:
+  application:
+    name: cloud-config-server-bus-7700
+  cloud:
+    config:
+      server:
+        git:    #注意这个仓库地址不要写错，配置中心无法刷新的原因是连了spring-cloud仓库，而修改的是spring-cloud-config，所以……
+          uri: https://gitee.com/plms/spring-cloud-config.git   #SpringCloud配置中心仓库地址，注意这里用SSH:git@gitee.com:plms/spring-cloud.git报错(原因待查)。
+          username: askdell@sina.com   #也可设置用户名密码，这里git本地自动存了，就不用设置了(个人推测，未证实)
+          password: cayman1463852
+          force-pull: true   #设置强制拉取，有时候本地有未提交的修改文件，不加此设置会报错：Cannot pull from remote。。。the working tree is not clean
+          search-paths:
+            - spring-cloud-config     #仓库名，配置文件要放到仓库根目录下才行，多重路径无效
+      label: master  #要读取的分支名
+  #配置RabbitMQ，#消息总线需要配置RabbitMQ使用，由RabbitMQ消息队列发送广播消息(配置文件信息等)
+  rabbitmq:
+    host: localhost
+    port: 5672  #5671是RabbitMQ的服务端口，而15672是Web管理页面的端口
+    username: guest
+    password: guest
+
+#Eureka配置，把配置总中心注册进Eureka
+eureka:
+  client:
+    fetch-registry: true  #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true  #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  instance:
+    instance-id: cloud-config-server-bus-7700    #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+    #设置取消Eureka自我保护机制，client端进行如下设置，Eureka端也要进行相应设置
+    #设置客户端client（本模块）向Eureka注册中心发送心跳信息的间隔，单位为秒，默认30秒
+    lease-renewal-interval-in-seconds: 2
+    #设置Eureka Server（）在收到最后一次的心跳信息后等待的上线时间（默认是90s），这里必须大于上面的时间，否则设置无意义
+    lease-expiration-duration-in-seconds: 5
+
+#总配置中心配置，暴露bus消息总线的刷新的端点，供外部访问，刷新配置信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'  #默认访问得uri
+

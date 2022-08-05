@@ -23,6 +23,9 @@
         <module>kathrine-spring-cloud-gateway-9001</module>
         <module>landa-cloud-config-server-6600</module>
         <module>matt-cloud-config-client-6611</module>
+        <module>nicholas-cloud-config-server-bus-7700</module>
+        <module>omar-cloud-config-client-bus-7711</module>
+        <module>penny-cloud-config-client-bus-7722</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->

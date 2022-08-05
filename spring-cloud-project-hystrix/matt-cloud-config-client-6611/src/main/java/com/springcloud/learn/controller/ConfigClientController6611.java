@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 3，由于总配置中心模块6600是直连的git，所以运维工程师改变git上的配置文件信息时，6600模块无需重启，直接刷新http://localhost:6600/master/config-dev.yml
  * 即可获取最新配置信息，但是客户端模块6611没有直连，刷新没用，必须重启才管用。
  *   解决方案：在Controller加@RefreshScope注解，同时需要运维工程师请求6611，执行：curl -X POST "http://localhost:6611/actuator/refresh",
+ *   这样做当服务中模块较多时就会太耗费人力，不方便，优化方案：使用RabbitMQ+Bus消息总线，见下章。
  *
  *   注意：由于git修改配置文件后总配置中心刷新不起作用，因此客户端刷新也不管用，原因待查。
  *   原因：application.yml文件里的git地址uri写错了，写成spring-cloud的了，而修改的是spring-cloud-config仓库
