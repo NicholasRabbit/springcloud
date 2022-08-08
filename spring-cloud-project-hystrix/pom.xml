@@ -26,6 +26,7 @@
         <module>nicholas-cloud-config-server-bus-7700</module>
         <module>omar-cloud-config-client-bus-7711</module>
         <module>penny-cloud-config-client-bus-7722</module>
+        <module>engel-eureka-7003</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->

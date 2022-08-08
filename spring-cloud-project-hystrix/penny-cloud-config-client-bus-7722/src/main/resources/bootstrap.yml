@@ -13,7 +13,7 @@ spring:
       label: master  #分支名称
       name: config  #配置文件名称
       profile: dev  #指定的后缀名，通过以上的三个配置组成，访问的是master分支上的config-dev.yml文件，访问地址见下面的uri: http://localhost:6600/master/config-dev.yml
-      uri: http://localhost:7700   #配置中心的地址
+      uri: http://localhost:7700   #总配置中心的地址
   #客户端配置RabbitMQ
   rabbitmq:
     host: localhost

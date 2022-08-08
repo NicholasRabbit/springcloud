@@ -1,15 +1,16 @@
-#访问Eureka地址是：localhost:7002，不是defaultZone里的值
+
+#访问Eureka地址是：localhost:7003或在hosts文件中设置好的域名，不是defaultZone里的值
 server:
-  port: 7002
+  port: 7003
 
 #配置Eureka
 eureka:
   instance:
     #hostname: localhost
-    hostname: eureka7002.com  #这里不要写localhost，这里写完，注意，还需要本地环境配置.../etc/hosts文件，进行映射，详见个人笔记
+    hostname: eureka7003.com  #这里不要写localhost，这里写完，注意，还需要本地环境配置.../etc/hosts文件，进行映射，详见个人笔记
   client:
     register-with-eureka: false   #表示不向注册中心注册自己，因为自己就是注册中心服务提供者
     fecth-registry: false   #表示本模块，自己这端就是注册中心，职责即是维护服务实例，并不需要去检索服务
     service-url:
       #defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/   #单机版的Eureka指向自己
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7003.com:7003/eureka/   #集群版，指向其它Eureka注册中心
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/   #集群版，指向其它Eureka注册中心

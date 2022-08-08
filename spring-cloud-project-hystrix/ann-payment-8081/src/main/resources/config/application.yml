@@ -37,7 +37,7 @@ eureka:
     fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
     register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
   instance:
     instance-id: ann-payment-8081   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
     prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问

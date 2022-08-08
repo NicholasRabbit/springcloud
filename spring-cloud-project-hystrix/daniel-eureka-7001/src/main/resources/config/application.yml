@@ -14,7 +14,7 @@ eureka:
     fecth-registry: false   #表示本模块，自己这端就是注册中心，职责即是维护服务实例，并不需要去检索服务
     service-url:
       #defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/   #单机版的Eureka指向自己
-      defaultZone: http://eureka7002.com:7002/eureka/   #集群版，指向其它Eureka注册中心，注意，还需要本地环境配置.../etc/hosts文件，进行映射
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/   #集群版，指向其它Eureka注册中心，注意，还需要本地环境配置.../etc/hosts文件，进行映射
 
   #设置取消Eureka自我保护机制，同时还要在服务端client进行相应设置
   server:
