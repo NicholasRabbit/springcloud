@@ -506,7 +506,7 @@ Client  A/B/C引入依赖，没有server
 
 ### 28，SpringCloud  Stream概述
 
-**解决了什么问题？**
+**1）解决了什么问题？**
 
 在大型项目中，有可能JavaEE的后端要与其他模块如大数据的服务模块进行数据交互，而JavaEE后端使用的消息中间件是RabbtiMQ，大数据模块使用的是Kafaka。前者的数据要传输到后者，就得全部推到重来，开发人员也要掌握这两种消息中间价的用法，这样无疑造成工作效率低，且学习成本高。
 
@@ -518,4 +518,57 @@ SpringCloud  Stream提供了一种解决方案，使用Binder绑定器，开发�
 
 流程图：
 
+![1660046831186](note-images/1660046831186.png)
+
 ![1659570190892](note_images/1659570190892.png)
+
+**2）常用注解及其含义**
+
+![1660045877871](note-images/1660045877871.png)
+
+**3）重复消费问题**：
+
+例如，当订单系统是集群时，用户下一个单，通过RabbitMQ发送消息，两个订单模块都拿到了订单信息，就会重复出单，让消费者付款两次，这显然是不行的。
+
+解决方案：需要Stream的消息分组功能。把具有相同功能的集群放到同一个组，因为同一个组内的服务模块只能有一个获取消息，这就解决了同功能模块重复消费的问题。在application.yml配置文件中自定义配置group的值相同即可。
+
+<img src="note-images/1660050511928.png" alt="1660050511928" style="zoom:80%;" />
+
+
+
+![1660049703605](note-images/1660049703605.png)
+
+![1660050314660](note-images/1660050314660.png)
+
+**4）消息的持久化**
+
+在application.yml文件里加了自定义分组的参数以后，也起到了把消息持久化的作用。当某个消息消费模块意外停机没有接收到之前发送的消息时，如果该模块配置的group参数，则重新启动后会接收之前的未读消息。不加group则不会接收。
+
+说明group也起到了把消息持久化的作用。
+
+```yaml
+bindings: 
+    ....
+     group: atguiguA  #设置group参数值   
+```
+
+
+
+### 29，Sleuth+Zipkin概述
+
+是什么？
+
+SpringCloud  Sleuth是一个分布式链路追踪系统，在微服务中，由于模块较多，相互或者类似于链条式的调用，难免会有个别模块出现延迟等问题，这时需要一个追踪系统，追踪请求。模块配置好Sleuth之后，它会自动日志和服务间的通信中加一些跟踪用的元数据，并结合Zinkin实现聚合汇总这些请求。
+
+引入依赖
+
+SpringCloud 把借鉴了Zipkin，并将其包含到Sleuth的依赖包内。
+
+```xml
+ <!--包含了sleuth+zipkin-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+```
+
