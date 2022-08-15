@@ -506,13 +506,11 @@ Client  A/B/C引入依赖，没有server
 
 ### 28，SpringCloud  Stream概述
 
-**1）解决了什么问题？**
+**1）是什么？解决了什么问题？**
 
-在大型项目中，有可能JavaEE的后端要与其他模块如大数据的服务模块进行数据交互，而JavaEE后端使用的消息中间件是RabbtiMQ，大数据模块使用的是Kafaka。前者的数据要传输到后者，就得全部推到重来，开发人员也要掌握这两种消息中间价的用法，这样无疑造成工作效率低，且学习成本高。
+在大型项目中，有可能JavaEE的后端要与其他模块如大数据的服务模块进行数据交互，而JavaEE后端使用的消息中间件是RabbtiMQ，大数据模块使用的是Kafaka。前者的数据要传输到后者，就得全部推到重来，开发人员也要掌握这两种消息中间件的用法，这样无疑造成工作效率低，且学习成本高。
 
-SpringCloud  Stream提供了一种解决方案，使用Binder绑定器，开发人员只需专注业务逻辑即可，类似于JDBC，无论是MySQL还是Oreacle，我直接调用接口，语法都是一样的。Stream就是无论是RabbitMQ还是Kafka，我的语法都是一样的。
-
-是什么？
+SpringCloud  Stream提供了一种解决方案，使用Binder绑定器，开发人员只需专注业务逻辑即可，类似于JDBC，无论是MySQL还是Oreacle，我直接调用JDBC接口，语法都是一样的。Stream就是无论是RabbitMQ还是Kafka，我的语法都是一样的。
 
 
 

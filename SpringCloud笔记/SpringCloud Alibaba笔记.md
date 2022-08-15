@@ -10,4 +10,3 @@ Naming  Configuration Service的缩写；
 
 ![1660136495533](note-images/1660136495533.png)
 
-### 

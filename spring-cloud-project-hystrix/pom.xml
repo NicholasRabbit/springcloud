@@ -10,11 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ann-payment-8081</module>
+        <module>ann-payment-8082</module>
         <module>carol-commons-api</module>
         <module>ben-consumer-80</module>
         <module>daniel-eureka-7001</module>
         <module>edison-eureka-7002</module>
-        <module>ann-payment-8082</module>
+        <module>engel-eureka-7003</module>
         <module>frank-consumer-feign-81</module>
         <module>gabrielle-payment-hystrix-8083</module>
         <module>hans-consumer-hystrix-82</module>
@@ -26,7 +27,8 @@
         <module>nicholas-cloud-config-server-bus-7700</module>
         <module>omar-cloud-config-client-bus-7711</module>
         <module>penny-cloud-config-client-bus-7722</module>
-        <module>engel-eureka-7003</module>
+        <module>queen-cloud-stream-provider-9900</module>
+        <module>samuel-cloud-stream-consumer-9911</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->
