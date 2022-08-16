@@ -9,7 +9,7 @@ import org.springframework.messaging.MessageChannel;
 import javax.annotation.Resource;
 import java.util.UUID;
 
-//@Service    //注意，这里不用写@Service注解了
+//@Service    //注意，这里实际并不是web项目的service层，所以不用写@Service注解了
 /**
  * 1，要加此注解，注意Source的包是stream，不要引入错了。
  * 2，这个注解表示把发送消息的类和RabbitMQ的消息管道绑定，开发者并不需要知道具体的消息中间件的操作，

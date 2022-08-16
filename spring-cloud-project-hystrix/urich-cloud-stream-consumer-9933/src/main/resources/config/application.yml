@@ -1,0 +1,48 @@
+
+server:
+  port: 9933
+
+
+spring:
+  application:
+    name: urich-cloud-stream-consumer-9933
+  cloud:
+    stream:
+      binders:  #以下配置消息中间件的绑定层参数
+        defaultRabbit:  #这里表示定义的名称，用于binding的整合
+          type: rabbit  #消息中间件的类型
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672   #RabbitMQ组件的端口是5672，网页端的是15672，注意区分
+                username: guest
+                password: guest
+      bindings:  #设置服务整合处理参数
+        input:  #注意消息消费者模块是input，表示消费者
+          destination: studyExchange  #定义交换机的名字
+          content-type: application/json  #设置消息的格式，普通文本则设置为“text/plain”
+          binder: defaultRabbit   #设定绑定的具体RabbitMQ实例，就是指的上面个的defaultRabbit
+          #1，group:自定义消息接收组的名称，可把集群中的模块规定为同一个组名，防止重复消费消息
+          #2，group也起到把消息持久化的作用，即当本模块中设置此参数后，如果它在意外停机，再启动后可接收之前发送的未读消息，不加group则接收不到。
+          #3，consumer9922/9933组成一个集群，分到一个组里
+          group: consumer-receiver
+
+
+#Eureka配置
+eureka:
+  client:
+    #这里写成fetchRegistry也可以
+    fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  instance:
+    instance-id: cloud-stream-consumer-9933   #在Eureka管理页面显示此名称，不显示默认的带电脑名字的名称
+    prefer-ip-address: true     #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
+
+
+
+
+
+

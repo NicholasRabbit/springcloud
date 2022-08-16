@@ -5,9 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StreamProviderApplication9900 {
+public class StreamConsumerApplication9922 {
 
     public static void main(String[] args) {
-        SpringApplication.run(StreamProviderApplication9900.class,args);
+        SpringApplication.run(StreamConsumerApplication9922.class,args);
     }
+
 }

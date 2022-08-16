@@ -29,6 +29,8 @@
         <module>penny-cloud-config-client-bus-7722</module>
         <module>queen-cloud-stream-provider-9900</module>
         <module>samuel-cloud-stream-consumer-9911</module>
+        <module>tim-cloud-stream-consumer-9922</module>
+        <module>urich-cloud-stream-consumer-9933</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->
