@@ -31,6 +31,8 @@
         <module>samuel-cloud-stream-consumer-9911</module>
         <module>tim-cloud-stream-consumer-9922</module>
         <module>urich-cloud-stream-consumer-9933</module>
+        <module>vivian-cloud-sleuth-zipkin-payment-3001</module>
+        <module>walter-cloud-sleuth-zipkin-consumer-40</module>
     </modules>
 
     <!--父工程不打包，因此打包类型为pom-->

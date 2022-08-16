@@ -1,0 +1,31 @@
+
+#Sleuth消费者模块配置
+
+server:
+  port: 40
+
+spring:
+  application:
+    name: sleuth-zipkin-consumer-40  #模块名称，将来注册到微服务用这个名字
+  #Zipkin配置
+  zipkin:
+    base-url: http://localhost:9411   #配置Zipkin组件的访问地址，需要启动zipkin的jar包，默认端口是9411
+  #Sleuth配置
+  sleuth:
+    sampler:
+      probability: 1  #设置Sleuth的采样率值，范围介于0~1, 1表示全部采集
+
+
+
+#Eureka配置
+eureka:
+  client:
+    #这里写成fetchRegistry也可以
+    fetch-registry: true    #设置是否从EurekaServer抓取自己的注册信息，默认为true，单节点怎么设置无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    register-with-eureka: true     #默认是true,表示将自己注册进EurekaServer，这样Eureka的服务注册中心就可以显示本服务模块，并进行管理
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka   #注意地址格式不要写错，最好复制，否则无法注册成功
+  #设置模块的名称
+  instance:
+    instance-id: cloud-sleuth-zipkin-consumer-40
+    prefer-ip-address: true   #设置把鼠标放到服务模块时，显示服务ip地址，不是默认的actuator/..，当然也可以访问
