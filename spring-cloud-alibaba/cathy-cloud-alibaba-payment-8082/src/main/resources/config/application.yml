@@ -32,6 +32,13 @@ logging:
   level:
     com.springcloud.learn.mapper: debug
 
+#对外暴露监控端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 
 
 
