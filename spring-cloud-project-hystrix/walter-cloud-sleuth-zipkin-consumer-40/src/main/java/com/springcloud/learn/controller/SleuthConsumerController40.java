@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * 消费者模块没有链接Sleuth，原因待查
+ * 本消费者模块没有链接Sleuth，原因待查
  *
  * */
 
