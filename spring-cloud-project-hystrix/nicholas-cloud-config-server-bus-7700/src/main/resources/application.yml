@@ -45,5 +45,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: 'bus-refresh'  #默认访问得uri
+        include: 'bus-refresh'  #默认访问得uri  可以发送请求:curl -X POST "http://localhost:7700/actuator/bus-refresh"到本总配置中心，刷新同步git的配置信息。
 

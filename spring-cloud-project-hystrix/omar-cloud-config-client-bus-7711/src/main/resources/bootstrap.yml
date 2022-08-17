@@ -38,5 +38,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"   #暴露所有接口，默认是health,info
+        include: "*"   #暴露所有接口，默认是health,info，设置成“*”后，执行：curl -X POST "http://localhost:6611/actuator/refresh"就可访问本模块，刷新消息了
 
