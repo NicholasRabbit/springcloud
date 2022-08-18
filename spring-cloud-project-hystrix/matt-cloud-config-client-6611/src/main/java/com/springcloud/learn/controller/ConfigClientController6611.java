@@ -28,8 +28,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ConfigClientController6611 {
 
     /**
-     * bootstrap.yml文件里没有info这个属性，推测是系统默认自带的；
+     * (1)bootstrap.yml文件里没有info这个属性，推测是系统默认自带的；
      * 这里会获取从6600总配置中心取得的配置数据
+     * (2)这就相当于从配置文件中获取信息了，其它数据源管理依赖如Druid，MySQL Connector等也是可以获取到，只不过这个配置文件不在项目里，在git仓库上
+     * 项目启动时，需要用到配置文件信息的上述依赖会先去bootstrap.yml里找，然后bootstrap.yml的配置信息会告诉它们去哪获取配置信息。
      * */
     @Value("${config.info}")
     String configInfo;

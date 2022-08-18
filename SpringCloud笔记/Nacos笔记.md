@@ -6,7 +6,7 @@
 ### Connect URL of DB:
 db.url.0=jdbc:mysql://127.0.0.1:3306/nacos-config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
 db.user.0=root
-db.password.0=root
+db.password.0=333333
 ```
 
 二，注意检查startup.cmd中的MODE是cluster还是standalone，一般没有集群则改为MODE=standalone
@@ -37,5 +37,12 @@ shudown.sh也是同样方法修改
 
 修改启动文件startup.sh，把mode=cluster改为 mode=standalone
 
-**注意：Windows环境下则编辑startup.cmd文件中的MODE的值**
+**注意：Windows环境下同样适用以上两个方法，可编辑startup.cmd文件中的MODE的值**
 
+#### 4，Nacos常见报错解决办法
+
+1）nacos unable to start embedded tomcat
+
+如果日志中，这条错上面有The server IP list of Nacos is []，则按3中的解决。
+
+https://blog.csdn.net/waterseason/article/details/117571539

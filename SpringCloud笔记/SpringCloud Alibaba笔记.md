@@ -108,16 +108,19 @@ cloud:
 
 
 
-### 5，Nacos从默认的dearby切换到MySQL数据库
+### 5，Nacos从默认的derby切换到MySQL数据库
 
 修改conf/application.properties配置
 
 ```properties
 ### 放开原来的注释，使用MySQL数据库:
 spring.datasource.platform=mysql
-### 设置MySQL参数，把原来的“db.url.0”中的“.0”去掉:
+### 去掉注释db.num
+db.num=1
+### 设置MySQL参数，把原来的“db.url.0”中的“.0”去掉，不去也可:
 db.url=jdbc:mysql://127.0.0.1:3306/nacos-config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
 db.user=root
-db.password=root
+db.password=333333  
+# 注意修改数据库名称，账户及密码
 ```
 
