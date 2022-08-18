@@ -1,0 +1,23 @@
+
+# bootstrap.yml和application.yml可同时使用，服务启动时优先加载系统级别的bootstrap.yml
+# 而在application.yml指定了激活从总配置中心获取的哪个后缀的配置文件
+
+spring:
+  profiles:
+    #active: dev  #这里切换读取总配置中心的配置文件，跟在本地使用方式一样。
+    active: prod  #
+
+#以下的配置统一放到Nacos总配置中心，不用每个模块都写了，通过bootstrap.yml配置好后读取总配置中心的文件。
+#spring:
+#  #配置数据源
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    username: root
+#    password: 123456
+#
+##MyBatis配置
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml   #设置映射文件的路径
+#  type-aliases-package: com.springcloud.learn.entity   #设定实体类别名所使用的包，以后不用再xxxMapper.xml里写实体类全路径了

@@ -9,15 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>barry-cloud-alibaba-payment-8081</artifactId>
+    <artifactId>edison-cloud-config-client-8001</artifactId>
 
 
     <dependencies>
 
+        <!--使用Nacos作为总配置中心的客户端模块，要引入nacos-config依赖-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
         <!--使用Nacos作为注册中心，要引入SpringCloud Alibabba Nacos依赖-->
         <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <!--这两个模块是核心模块，每个项目必须要引入：spring-boot-starter-web和spring-boot-starter-actuator-->
@@ -75,9 +81,6 @@
 
 
     </dependencies>
-
-
-
 
 
 </project>

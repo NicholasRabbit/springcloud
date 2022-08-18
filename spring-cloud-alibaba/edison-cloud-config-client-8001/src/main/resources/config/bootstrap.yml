@@ -1,0 +1,27 @@
+
+server:
+  port: 8001
+  servlet:
+    context-path: /nacos-config/client
+
+spring:
+  application:
+    name: config-payment-client-8001
+  #注册本支付模块配置客户端到Nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #这里加“http://”报错，无法注册到Nacos，原因待查
+      #设置Nacos作为总配置中心
+      config:
+        server-addr: localhost:8848
+        file-extension: yml  #设置配置文件的后缀，Nacos配置中心目前只支持yml/yaml/properties这两种格式。注意后缀要一致，yml对应Nacos配置的yml，不要写yaml。
+        #group: DEV_GROUP   # 设置从指定的总配置中心的组内获取配置文件，group可以不写，不写的话默认是DEFAULT_GROUP
+        namespace: develop  #设置命名空间，namespace默认使用public
+
+# 本模块如何从Nacos总配置中心找自己的配置文件？
+# 1，首先在Nacos配置页面建好配置文件，名字遵循以下格式，对应的是Nacos页面的Data ID。 例找本模块的dev配置文件，可写为：config-payment-client-8001-dev.yml。
+# 见SpringCloud Alibaba笔记: 6，Nacos总配置中心配置参数
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+# 2，本模块查找时也按照以下格式寻找，例如：config-payment-client-8001-dev.yml，在application.yml指定了激活的配置文件
+# 3，也可像在使用本地配置文件一样在application.yml或bootstrap.yml里切换dev/prod等。

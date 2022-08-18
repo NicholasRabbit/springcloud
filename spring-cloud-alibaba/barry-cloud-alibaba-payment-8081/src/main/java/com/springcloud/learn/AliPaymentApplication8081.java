@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * 2，Nacos模块是独立的，需要单独启动
  * 3，可配置支付模块集群，做法和使用Eureka时一样，支付集群模块的服务名要一致
  *    payment-8081/8082为集群
+ * 4，payment-8081/8082和consumer80使用Nacos作为注册中心，后续的章节把Nacos作为总配置中心。
  * */
 
 @SpringBootApplication

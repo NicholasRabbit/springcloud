@@ -21,6 +21,6 @@ management:
         include: '*'
 
 
-#配置支付模块的服务名
+#配置支付模块的服务名，用于给对象注入值
 payment:
   server-url: http://cloud-alibaba-payment

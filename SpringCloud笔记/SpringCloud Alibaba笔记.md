@@ -124,3 +124,12 @@ db.password=333333
 # 注意修改数据库名称，账户及密码
 ```
 
+### 6，Nacos总配置中心配置参数
+
+![1660827991655](note-images/1660827991655.png)
+
+### 7，Sentinel概述
+
+- Sentinel和Hystrix功能相似，但比Hystrix功能强大
+
+- Sentinel分为两部分，后台和前台界面，后台服务是个jar包，使用的是8080端口，和tomcat一样，注意。

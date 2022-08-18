@@ -1,0 +1,25 @@
+#这里是Nacos的配置信息，仅作备份，实际并不在项目内使用
+
+spring:
+  #在Nacos总配置中心这里统一配置数据库信息
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+#MyBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.springcloud.learn.entity
+
+
+#设置打印sql日志
+logging:
+  level:
+    com.springcloud.learn.mapper: debug
+
+#测试用
+config:
+  info: config-payment-client-8001-dev-backup.yml,version=0
