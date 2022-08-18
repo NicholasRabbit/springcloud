@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//自定义负载均衡器，模拟Ribbon，要加组件注解被框架注入
+//自定义负载均衡器，模拟Ribbon的轮询算法，要加组件注解被框架注入
 @Component
 public class MyLoadBalancer implements LoadBalancer {
 

@@ -1,0 +1,26 @@
+
+server:
+  port: 80
+
+
+spring:
+  application:
+    name: ali-consumer-80
+  #注册本消费模块到Nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #这里加“http://”报错，无法注册到Nacos，原因待查
+
+
+#对外暴露监控端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+#配置支付模块的服务名
+payment:
+  server-url: http://cloud-alibaba-payment

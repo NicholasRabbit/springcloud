@@ -14,6 +14,7 @@
         <module>adam-commons-api</module>
         <module>barry-cloud-alibaba-payment-8081</module>
         <module>cathy-cloud-alibaba-payment-8082</module>
+        <module>daemon-cloud-alibaba-consumer-80</module>
     </modules>
 
 
