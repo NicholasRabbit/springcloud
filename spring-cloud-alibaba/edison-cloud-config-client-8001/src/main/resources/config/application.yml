@@ -4,8 +4,8 @@
 
 spring:
   profiles:
-    #active: dev  #这里切换读取总配置中心的配置文件，跟在本地使用方式一样。
-    active: prod  #
+    active: dev  #这里切换读取总配置中心的配置文件，跟在本地使用方式一样。
+#    active: prod  #
 
 #以下的配置统一放到Nacos总配置中心，不用每个模块都写了，通过bootstrap.yml配置好后读取总配置中心的文件。
 #spring:

@@ -128,6 +128,12 @@ db.password=333333
 
 ![1660827991655](note-images/1660827991655.png)
 
+Nacos总配置中心新建配置文件注意事项：
+
+1)  名字严格按照规定${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}，注意要加后缀，例： config-payment-client-dev.yml 
+
+2) Data ID就是对应的文件名，namespace, Group都可以自定义添加，满足不同情况下的开发测试需要。
+
 ### 7，Sentinel概述
 
 - Sentinel和Hystrix功能相似，但比Hystrix功能强大

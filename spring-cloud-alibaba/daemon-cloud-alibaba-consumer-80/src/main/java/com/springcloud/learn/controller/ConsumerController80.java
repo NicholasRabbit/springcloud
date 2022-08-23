@@ -27,8 +27,8 @@ public class ConsumerController80 {
 
     @Value("${payment.server-url}")
     private String PAYMENT_URL;
-
-
+    @Value("${payment.config-server-url}")
+    private String CONFIG_PAYMENT_URL;
 
     @GetMapping("/get/{id}")
     @ResponseBody
@@ -42,6 +42,23 @@ public class ConsumerController80 {
             return commonResult;
         }
     }
+
+    /**访问8001/8002集群
+     * 注意，因为这两个集群yml里设置了context-path，所以访问路径是：服务名 + context-path + uri
+     * */
+    @GetMapping("/get-config/{id}")
+    @ResponseBody
+    public CommonResult<PaymentUser> getConfigById(@PathVariable(value="id") String id){
+        //从这里通过http工具调用ann-payment模块的服务，实现了跨模块调用获取数据；
+        //   使用getForObject(..)方法；
+        CommonResult<PaymentUser> commonResult = restTemplate.getForObject(CONFIG_PAYMENT_URL + "/nacos-config/client" + "/payment/get/" + id, CommonResult.class);
+        if(commonResult == null){
+            return new CommonResult<>(444,"无此数据");
+        }else{
+            return commonResult;
+        }
+    }
+
 
 
 }

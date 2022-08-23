@@ -1,0 +1,8 @@
+
+# bootstrap.yml和application.yml可同时使用，服务启动时优先加载系统级别的bootstrap.yml
+# 而在application.yml指定了激活从总配置中心获取的哪个后缀的配置文件
+
+spring:
+  profiles:
+    active: dev
+#    active: prod

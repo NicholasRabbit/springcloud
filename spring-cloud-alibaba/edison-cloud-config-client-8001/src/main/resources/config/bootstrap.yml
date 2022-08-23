@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: config-payment-client-8001
+    name: config-payment-client   #集群要配置相同的服务名，且相同功能的接口的地址必须一致
   #注册本支付模块配置客户端到Nacos注册中心
   cloud:
     nacos:
@@ -14,10 +14,10 @@ spring:
         server-addr: localhost:8848  #这里加“http://”报错，无法注册到Nacos，原因待查
       #设置Nacos作为总配置中心
       config:
-        server-addr: localhost:8848
+        server-addr: localhost:8848  #Nacos访问地址，跟上面一样
         file-extension: yml  #设置配置文件的后缀，Nacos配置中心目前只支持yml/yaml/properties这两种格式。注意后缀要一致，yml对应Nacos配置的yml，不要写yaml。
-        #group: DEV_GROUP   # 设置从指定的总配置中心的组内获取配置文件，group可以不写，不写的话默认是DEFAULT_GROUP
-        #namespace: develop  #设置命名空间，namespace默认使用public
+        group: DEV_GROUP   # 设置从指定的总配置中心的组内获取配置文件，group可以不写，不写的话默认是DEFAULT_GROUP
+        namespace: a66d8673-33e5-4887-a7b7-9814fa2490f5  #设置命名空间，写空间的id，不是名称，namespace不写的话默认使用public
 
 # 本模块如何从Nacos总配置中心找自己的配置文件？
 # 1，首先在Nacos配置页面建好配置文件，名字遵循以下格式，对应的是Nacos页面的Data ID。 例找本模块的dev配置文件，可写为：config-payment-client-8001-dev.yml。

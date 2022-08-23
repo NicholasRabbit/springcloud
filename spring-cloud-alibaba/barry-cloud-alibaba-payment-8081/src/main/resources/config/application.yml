@@ -4,7 +4,7 @@ server:
 
 
 spring:
-  application:
+  application:                    #集群要配置相同的服务名，且相同功能的接口的地址必须一致
     name: cloud-alibaba-payment   #支付模块集群，服务名要同一，注册到Nacos的就是这个名字，跟注册到Eureka一样。设置好后，在Nacos服务管理页面会显示集群的实例数量。
   #配置数据源
   datasource:
