@@ -132,4 +132,56 @@ db.password=333333
 
 - Sentinel和Hystrix功能相似，但比Hystrix功能强大
 
-- Sentinel分为两部分，后台和前台界面，后台服务是个jar包，使用的是8080端口，和tomcat一样，注意。
+  
+
+
+Sentinel启动步骤：
+
+1) 直接官网下载jar包运行即可，内嵌Tomcat，账户名密码都是sentinel；
+
+2) Sebtinel实行的是懒加载机制，服务链接Sentinel以后，登陆Sentinel不会立即展示，访问服务后才会在Sentinel监控页面展示；
+
+3) Sentinel分为两部分，后台和前台界面，后台服务是个jar包，使用的是8080端口，和tomcat一样，端口号可修改，参照以下官方文档摘录。 也可下载源码启动项目，Sentinel是一个SpringBoot项目。
+
+===========官方文档摘录
+
+Figure 1. Sentinel Dashboard
+
+开启该功能需要3个步骤：
+
+###### 获取控制台
+
+您可以从 [release 页面](https://github.com/alibaba/Sentinel/releases) 下载最新版本的控制台 jar 包。
+
+您也可以从最新版本的源码自行构建 Sentinel 控制台：
+
+- 下载 [控制台](https://github.com/alibaba/Sentinel/tree/master/sentinel-dashboard) 工程
+- 使用以下命令将代码打包成一个 fat jar: `mvn clean package`
+
+###### 启动控制台，可修改端口号
+
+**如若8080端口冲突，可使用 `-Dserver.port=新端口` 进行设置。**
+
+Sentinel 控制台是一个标准的 Spring Boot 应用，以 Spring Boot 的方式运行 jar 包即可。
+
+```shell
+java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
+```
+
+#### 配置控制台信息
+
+application.yml
+
+```
+spring:
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+```
+
+这里的 `spring.cloud.sentinel.transport.port`  端口配置会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互。比如 Sentinel  控制台添加了一个限流规则，会把规则数据 push 给这个 Http Server 接收，Http Server 再将规则注册到 Sentinel 中。
+
+更多 Sentinel 控制台的使用及问题参考： [Sentinel 控制台文档](https://github.com/alibaba/Sentinel/wiki/控制台) 以及 [Sentinel FAQ](https://github.com/alibaba/Sentinel/wiki/FAQ)
+

@@ -19,6 +19,8 @@ import javax.annotation.Resource;
  * 解决办法：
  * 把consumer9922/9933分配到一个组里，在application.yml里设置bindings.group=groupA。
  *
+ * 三，消息的持久化，再消息消费者端配置，见9922-->application.yml
+ * 参数group也起到把消息持久化的作用，即当模块consumer9922中设置此参数后，如果它在意外停机，再启动后可接收9900之前发送的未读消息，不加group则接收不到。
  * */
 
 @Controller

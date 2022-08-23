@@ -46,3 +46,13 @@ shudown.sh也是同样方法修改
 如果日志中，这条错上面有The server IP list of Nacos is []，则按3中的解决。
 
 https://blog.csdn.net/waterseason/article/details/117571539
+
+#### 5，Nacos下载源码启动
+
+ 进入到module：nacos-console【由于项目是使用SpringBoot】
+ 需要进行Run/Debug Configurations
+ 注意事宜：一定要增加VM options：-Dnacos.standalone=true, 否则启动的是集群模式
+
+2020版idea在这里设置
+
+![1660964491208](note-images/1660964491208.png) 
