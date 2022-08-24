@@ -134,7 +134,89 @@ Nacos总配置中心新建配置文件注意事项：
 
 2) Data ID就是对应的文件名，namespace, Group都可以自定义添加，满足不同情况下的开发测试需要。
 
-### 7，Sentinel概述
+### 7，Nacos配置集群
+
+一，为什么配置集群？
+
+防止单体的Nacos出现停机，影响整个服务
+
+二，配置集群注意事项
+
+1）一般建议在Linux环境下配置Nacos，因为正式环境都在Linux中；
+
+2）Nacos配置集群需要结合nginx，MySQL一起才可；
+
+​      使用nginx负载均衡多个Nacos服务，使用MySQL作为配置信息的持久化存储库。
+
+3）集群数量最少三个。
+
+三，配置集群步骤，以Linux环境为例。
+
+1）下载 Linux版Nacos，放到服务器，并取消使用默认的derby数据库，在Nacos的conf/application.properties里配置链接MySQL数据库，开启数据的持久化，具体设置见本页第5条；
+
+2）配置Nacos 的conf/cluster.conf文件，如果没有则直接复制cluster.confi.example并更名，注意备份。
+
+- 首先执行  hostname  -i  :  查询出localhost对应的ip，但是不能为127.0.0.1，可修改为本机的网卡ens33的ip地址。
+
+修改方法：vi  /etc/hosts : 打开linux的hosts文件
+
+添加以下内容，192.168.30.128 为本机的ip地址：
+
+```txt
+192.168.30.128   localhost localhost.localdomain localhost6 localhost6.localdomain6
+```
+
+添加完执行hostname -i  : 查看上面的ip是否加入
+
+- 修改Nacos的cluster.conf文件，添加以下内容，把上步设置的ip地址和nacos集群的端口号添加进去
+
+  这里设置的含义是，表明这三个端口号的Nacos是组成的一个集群，实际生产中，不同服务器上的Nacos也可组成集群，每个Nacos里的clust.conf都要写相同的内容，ip地址端口号等要相应变更。
+
+  这里为了练习方便放到一个服务器，仅用端口号区分开。
+
+```properties
+192.168.30.128:3001   #三个Nacos集群的端口号
+192.168.30.128:3002
+192.168.30.128:3003
+```
+
+3）修改启动脚本startup.sh，使它启动时可设置不同的端口，注意备份
+
+```shell
+while getopts ":m:f:s:c:p:o:" opt  #注意这里新增o:,端口参数一般为p:, 但是这里原来有p:了
+do
+    case $opt in
+        m)
+            MODE=$OPTARG;;
+        f)
+            FUNCTION_MODE=$OPTARG;;
+        s)
+            SERVER=$OPTARG;;
+        c)
+            MEMBER_LIST=$OPTARG;;
+        p)
+            EMBEDDED_STORAGE=$OPTARG;;
+        o)					#这两行为新增，对应上面的o:
+            PORT=$OPTARG;;    
+        ?)
+        echo "Unknown parameter"
+        exit 1;;
+    esac
+done
+#.....
+nohup $JAVA -Dserver.port=${PORT} ${JAVA_OPT} nacos.nacos >> ${BASE_DIR}/logs/start.out 2>&1 &
+#-Dserver.port=${PORT}为新增，增加startup.sh启动使得选项 -o
+```
+
+配置完成后执行  ./startup.sh  -o  3001启动一个nacos，其它的启动修改端口号即可
+
+**以上配置只能启动一个，原因：根据nacos报错日志显示虚拟机内存不够**
+
+![1661327114091](note-images/1661327114091.png)
+
+![1661330462763](note-images/1661330462763.png)
+
+### 8，Sentinel概述
 
 - Sentinel和Hystrix功能相似，但比Hystrix功能强大
 
@@ -174,7 +256,7 @@ Sentinel 控制台是一个标准的 Spring Boot 应用，以 Spring Boot 的方
 java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
 ```
 
-#### 配置控制台信息
+###### 配置控制台信息
 
 application.yml
 
@@ -191,3 +273,4 @@ spring:
 
 更多 Sentinel 控制台的使用及问题参考： [Sentinel 控制台文档](https://github.com/alibaba/Sentinel/wiki/控制台) 以及 [Sentinel FAQ](https://github.com/alibaba/Sentinel/wiki/FAQ)
 
+![1661264335546](note-images/1661264335546.png)
