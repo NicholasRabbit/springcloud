@@ -82,7 +82,7 @@ spring:
 
 这样就启动了三个Nacos
 
-ps  -ef | grep nacos  | grep  -V  grep | wc  -l  ：查看Nacos的启动数量，如果为3则正确。
+五，查看Nacos启动数量：ps  -ef | grep nacos  | grep  -V  grep | wc  -l  ：如果为3则正确，当Nacos为单体的情况下，注册在Nacos中的微服务模块也会被统计进来，所以此命令使用在所有微服务模块未启动之前。
 
 ![1660742722120](note-images/1660742722120.png)
 

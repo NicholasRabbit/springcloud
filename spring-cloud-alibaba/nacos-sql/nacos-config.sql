@@ -13,7 +13,7 @@
 
  Date: 23/08/2022 22:09:40
 
- 各模块练习范例的sql脚本
+ Nacos练习范例的sql脚本
 */
 
 SET NAMES utf8mb4;
