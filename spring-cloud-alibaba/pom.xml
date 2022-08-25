@@ -17,6 +17,7 @@
         <module>daemon-cloud-alibaba-consumer-80</module>
         <module>edison-cloud-config-client-8001</module>
         <module>fei-cloud-config-client-8002</module>
+        <module>gronk-cloud-sentinel-consumer-81</module>
     </modules>
 
 

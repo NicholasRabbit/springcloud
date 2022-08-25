@@ -9,9 +9,28 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fei-cloud-config-client-8002</artifactId>
+    <artifactId>gronk-cloud-sentinel-consumer-81</artifactId>
 
     <dependencies>
+
+        <!--SpringCloud Ailibaba Sentinel -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <!--Sentinel后续持久化会用到此依赖 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
+        <!--引入OpenFeign备用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
 
         <!--使用Nacos作为总配置中心的客户端模块，要引入nacos-config依赖-->
         <dependency>
@@ -38,6 +57,7 @@
         </dependency>
         <!--============================-->
 
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -47,12 +67,13 @@
         <!--引入公共模块依赖-->
         <dependency>
             <groupId>com.springcloud.learn</groupId>
-            <artifactId>carol-commons-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>adam-commons-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
 
     </dependencies>
+
 
 
 </project>

@@ -1,0 +1,25 @@
+
+
+server:
+  port: 81
+
+spring:
+  application:
+    name: cloud-sentinel-consumer-81
+  #注册服务到Nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      #使用Nacos作为总配置中心，注意如果使用Nacos配置文件，要在Nacos配置中心配置好，名称参照8001模块配置，否则启动报错
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        group: DEV_GROUP    #使用自定义的组
+        namespace: a66d8673-33e5-4887-a7b7-9814fa2490f5  #使用自定义的命名空间
+
+    #把本模块服务配置到Sentinel，由其监控
+    sentinel:
+      transport:
+        dashboard: localhost:6060   #配置Sentinel的监控面板的地址，即页面的服务地址
+        port: 8719  #扫描端口，默认从8719开始，被占用的递增找(个人解释，后期待研究)

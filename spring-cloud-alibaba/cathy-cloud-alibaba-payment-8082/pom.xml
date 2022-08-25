@@ -69,8 +69,8 @@
         <!--引入公共模块依赖-->
         <dependency>
             <groupId>com.springcloud.learn</groupId>
-            <artifactId>carol-commons-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>adam-commons-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
 

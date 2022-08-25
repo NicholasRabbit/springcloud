@@ -12,6 +12,9 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848  #这里加“http://”报错，无法注册到Nacos，原因待查
+
+        #server-addr: 192.168.30.128:3030  #Nacos集群使用此配置，这里的地址是Nginx的地址，Nginx进行负载均衡Nacos集群，把服务注册进此地址即可注册进Nacos集群
+
       #设置Nacos作为总配置中心
       config:
         server-addr: localhost:8848  #Nacos访问地址，跟上面一样
