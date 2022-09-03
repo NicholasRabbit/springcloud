@@ -11,7 +11,7 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-        namespace: a66d8673-33e5-4887-a7b7-9814fa2490f5  #注册中心也可自定义命名空间，并把服务注册到该命名空间，这个把本模块注册到自定义的develop命名空间
+        #namespace: a66d8673-33e5-4887-a7b7-9814fa2490f5  #注册中心也可自定义命名空间，并把服务注册到该命名空间，这个把本模块注册到自定义的develop命名空间
       #使用Nacos作为总配置中心，注意如果使用Nacos配置文件，要在Nacos配置中心配置好，名称参照8001模块配置，否则启动报错
       config:
         server-addr: localhost:8848
@@ -22,5 +22,5 @@ spring:
     #把本模块服务配置到Sentinel，由其监控
     sentinel:
       transport:
-        dashboard: localhost:6060   #配置Sentinel的监控面板的地址，即页面的服务地址，注意这里设置6060端口，sentinel-1.6.0.jar启动时也要设置端口为6060
+        dashboard: localhost:6060   #配置Sentinel的监控面板的地址，即页面的服务地址，注意这里设置6060端口，sentinel-1.6.0.jar启动时也要设置端口为6060, java -Dserver.port=6060
         port: 8719  #扫描端口，默认从8719开始，被占用的递增找(个人解释，后期待研究)

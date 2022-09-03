@@ -2,13 +2,14 @@ package com.springcloud.learn.controller;
 
 import com.springcloud.learn.entity.CommonResult;
 import com.springcloud.learn.entity.PaymentUser;
+import com.springcloud.learn.service.PaymentFeignService;
+import javafx.animation.PauseTransition;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -17,6 +18,8 @@ public class FlowLimitController {
 
     @Value("${config.info}")
     private String configInfo;
+    @Autowired
+    private PaymentFeignService paymentFeignService;
 
     /**一，测试Sentinel的流控规则:QPS熔断策略
      * 1，即限制每秒的请求数，例设置阈值为1，则表示每秒只允许一个线程过来，多的话则会全部挡在接口之外。
@@ -45,7 +48,7 @@ public class FlowLimitController {
     }
 
     /**
-     * 三，流控模式：关联
+     * 三，流控模式：关联，可设置多个流控效果，默认是失败
      * Sentinel以阈值类型QPS为例，线程数的关联功能同理。
      * 步骤，
      * 1，在Sentinel流控界面的“/sentinel/consumer/insertOrder”接口设置QPS规则为每秒1次，关联资源设置为：/sentinel/consumer/pay。
@@ -61,11 +64,22 @@ public class FlowLimitController {
         return new CommonResult<PaymentUser>(100, "pay==>configInfo:" + configInfo);
     }
 
-    @PostMapping("/insertOrder")
+    @PostMapping("/insertOrder")  //新增订单接口
     @ResponseBody
     public CommonResult<PaymentUser> insertOrder(PaymentUser paymentUser){
         System.out.println("paymentUser==>" + paymentUser);
         return new CommonResult<PaymentUser>(100, "insertOrder==>configInfo:" + configInfo);
+    }
+
+    /**
+     * 四，流控模式：链路
+     *
+     *
+     * */
+    @GetMapping("getById/{id}")
+    @ResponseBody
+    public CommonResult<PaymentUser> getById(@PathVariable Long id){
+        return paymentFeignService.getById(id);
     }
 
 
