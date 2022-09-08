@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PaymentFeignService {
 
     //调用接口
-    @SentinelResource("getById")
+    @SentinelResource("getById")   //Feign无法用次注解报错：Wrong state for SentinelResource annotation，原因待查
     @GetMapping(value = "/payment/get/{id}")  //这里赋值支付模块的接口，当controller调用此方法，就会访问支付模块对应的接口
     public abstract CommonResult<PaymentUser> getById(@PathVariable(value="id") Long id);
 

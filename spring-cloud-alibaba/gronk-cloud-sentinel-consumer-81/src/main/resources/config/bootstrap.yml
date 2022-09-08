@@ -24,3 +24,4 @@ spring:
       transport:
         dashboard: localhost:6060   #配置Sentinel的监控面板的地址，即页面的服务地址，注意这里设置6060端口，sentinel-1.6.0.jar启动时也要设置端口为6060, java -Dserver.port=6060
         port: 8719  #扫描端口，默认从8719开始，被占用的递增找(个人解释，后期待研究)
+      #web-context-unify: false   #设置取消Sentinel的Context整合，不起作用？？？
