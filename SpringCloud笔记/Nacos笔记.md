@@ -39,15 +39,7 @@ shudown.sh也是同样方法修改
 
 **注意：Windows环境下同样适用以上两个方法，可编辑startup.cmd文件中的MODE的值**
 
-#### 4，Nacos常见报错解决办法
-
-1）nacos unable to start embedded tomcat
-
-如果日志中，这条错上面有The server IP list of Nacos is []，则按3中的解决。
-
-https://blog.csdn.net/waterseason/article/details/117571539
-
-#### 5，Nacos下载源码启动
+#### 4，Nacos下载源码启动
 
  进入到module：nacos-console【由于项目是使用SpringBoot】
  需要进行Run/Debug Configurations
@@ -56,3 +48,28 @@ https://blog.csdn.net/waterseason/article/details/117571539
 2020版idea在这里设置
 
 ![1660964491208](note-images/1660964491208.png) 
+
+
+
+#### ! !，Nacos常见报错解决办法
+
+1）nacos unable to start embedded tomcat
+
+如果日志中，这条错上面有The server IP list of Nacos is []，则按3中的解决。
+
+https://blog.csdn.net/waterseason/article/details/117571539
+
+2)  java.sql.SQLNonTransientConnectionException: Could not create connection to database server
+
+解决办法：
+
+ 查看nacos配置文件，在数据库连接配置url上增加allowPublicKeyRetrieval=true配置 
+
+```properties
+ db.url.0=jdbc:mysql://192.168.214.128:3306/nacos...&allowPublicKeyRetrieval=true&...
+```
+
+3) 服务无法访问
+检查服务是否默认下线了。
+
+![1708504851862](note-images/1708504851862.png)
