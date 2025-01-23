@@ -9,7 +9,7 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true  #开启动态路由功能，即从注册中心获取统一的服务名进行访问，例"ann-payment"，而不是"localhost:8081"这样，这里注释，仅为对比，实际应用在application-dynamic.yml中设置
+          enabled: true  #开启动态路由功能，即从注册中心获取统一的服务名进行访问，例"ann-payment"，而不是"localhost:8081"这样，
       routes:   #这里设置网关的路由转发，routes为复数，代表可设置多个路由，根据匹配规则转发到不同的服务。
         - id: ann-payment-routh01   #网关代理的路由的id，名称自定义，必须唯一，建议设置和服务模块名相关。
           uri: lb://FRANK-CONSUMER-FEIGN-81    #设置访问动态的路由，即直接访问服务在Eureka中注册的名称，注意参数值的写法，加”lb://“load balance

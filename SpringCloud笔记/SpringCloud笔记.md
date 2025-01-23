@@ -271,9 +271,9 @@ public interface FeignPaymentService {}
 public interface FeignPaymentService02 {}
 ```
 
+#### How does `Feign` handle exceptions in service calls?
 
-
-
+[FeignExceptioin](https://blog.csdn.net/weixin_43910915/article/details/124924625)
 
 
 
