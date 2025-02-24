@@ -53,13 +53,15 @@ shudown.sh也是同样方法修改
 
 #### ! !，Nacos常见报错解决办法
 
-1）nacos unable to start embedded tomcat
+##### 1）nacos unable to start embedded tomcat
 
 如果日志中，这条错上面有The server IP list of Nacos is []，则按3中的解决。
 
 https://blog.csdn.net/waterseason/article/details/117571539
 
-2)  java.sql.SQLNonTransientConnectionException: Could not create connection to database server
+##### 2) Could not create connection to database server
+
+java.sql.SQLNonTransientConnectionException: Could not create connection to database server
 
 解决办法：
 
@@ -69,7 +71,14 @@ https://blog.csdn.net/waterseason/article/details/117571539
  db.url.0=jdbc:mysql://192.168.214.128:3306/nacos...&allowPublicKeyRetrieval=true&...
 ```
 
-3) 服务无法访问
+##### 3) 服务无法访问
+
 检查服务是否默认下线了。
 
 ![1708504851862](note-images/1708504851862.png)
+
+##### 4)  creating bean with name 'instanceOperatorClientImpl
+
+The version is `2.0.2`, try `1.4.4` or `1.4.6`version instead.  Note that start the standalone mode with `startup.cmd` or `startup.sh` in Windows or Linux, respectively. I'm not sure if it work when starting NACOS    on the source. 
+
+<img src="note-images/1740387914789.png" alt="1740387914789" style="zoom:67%;" />
